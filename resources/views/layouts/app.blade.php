@@ -113,8 +113,10 @@
 										<li>
 											<a href="#" title="Tentang desa">Tentang Desa  <i class="fa fa-angle-down" aria-hidden="true"></i></a>
 											<ul class="sub-menu">
-												<li><a href="services-v1.html" title="">Services Grid</a></li>
-                                                <li><a href="services-v2.html" title="">Risk Management</a></li>
+												<li><a href="#" title="">Informasi Sejarah</a></li>
+                                                <li><a href="#" title="">Profil Aparatur Desa</a></li>
+                                                <li><a href="#" title="">Struktur Organisasi</a></li>
+                                                <li><a href="#" title="">Seni dan Kebudayaan</a></li>
 											</ul><!-- /.sub-menu -->
 										</li>
                                         <li>
@@ -123,20 +125,23 @@
 										<li>
 											<a href="#" title="Demografi">Informasi Demografi  <i class="fa fa-angle-down" aria-hidden="true"></i></a>
 											<ul class="sub-menu">
-												<li><a href="portfolio-v3.html" title="">Portfolio Default</a></li>
-                                                <li><a href="portfolio-v2.html" title="">Layout 02</a></li>
-                                                <li><a href="portfolio-v1.html" title="">Portfolio Load More</a></li>
+												<li><a href="#" title="">Trantib dan Bencana</a></li>
 											</ul><!-- /.sub-menu -->
 										</li>
 										<li>
 											<a href="blog.html" title="Potensi">Potensi  <i class="fa fa-angle-down" aria-hidden="true"></i></a>
 											<ul class="sub-menu">
-												<li><a href="blog.html" title="">Blog</a></li>
-												<li><a href="blog-single.html" title="">Blog Grid</a></li>
+												<li><a href="#" title="">Produk Unggulan</a></li>
+												<li><a href="#" title="">Pusat Wisata</a></li>
+                                                <li><a href="#" title="">UKM Desa</a></li>
 											</ul><!-- /.sub-menu -->
 										</li>
 										<li>
-											<a href="#" title="">Galeri</a>
+											<a href="#" title="">Galeri <i class="fa fa-angle-down" aria-hidden="true"></i></a>
+                                            <ul class="sub-menu">
+												<li><a href="#" title="">Dokumentasi dan Kegiatan</a></li>
+
+											</ul><!-- /.sub-menu -->
 										</li>
 									</ul><!-- /.menu -->
 								</nav><!-- /#mainnav -->
@@ -351,7 +356,7 @@
                                 <h3 class="title">Misi</h3>
                                 <figure>
                                     <blockquote>
-                                        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quae rerum voluptates, non impedit praesentium ipsa.
+                                        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quae rerum volupt ates, non impedit praesentium ipsa.
                                         <figcaption>
                                             Ketua Negeri Hila
                                         </figcaption>
