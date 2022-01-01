@@ -3721,3 +3721,12 @@ article.post .content-post {
     line-height: 1.7rem;
 }
 
+.pagination-d-flex .pagination__meta {
+    margin-bottom: .7rem;
+    font-weight: 600;
+}
+
+.pagination-d-flex  {
+    display: flex;
+    flex-direction: column;
+}
