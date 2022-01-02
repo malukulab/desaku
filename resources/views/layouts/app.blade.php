@@ -120,7 +120,7 @@
 											</ul><!-- /.sub-menu -->
 										</li>
                                         <li>
-											<a href="#" title="Berita">Berita</a>
+											<a href="{{ route('news.index') }}" title="Berita">Berita</a>
 										</li>
 										<li>
 											<a href="#" title="Demografi">Informasi Demografi  <i class="fa fa-angle-down" aria-hidden="true"></i></a>
@@ -456,5 +456,6 @@
     <script type="text/javascript" src="{{ asset('vendor/finance-accounting/revolution/js/extensions/revolution.extension.video.min.js') }}"></script>
 
     @yield('script')
+    @stack('scripts')
 	</body>
 </html>

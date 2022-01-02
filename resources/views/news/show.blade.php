@@ -100,30 +100,7 @@
                     </div>
                 </div>
                 <div class="col-md-4">
-                    <div class="sidebar right">
-                        <aside id="recent-post" class=" widget widget-recent">
-                            <h3 class="widget-title">Berita Terbaru</h3>
-                                <ul>
-                                    <li>
-                                        <a title="" href="/blog-single">Why Do I Need To Use Financial ?</a><span>January 11, 2021</span></li>
-                                    <li>
-                                        <a title="" href="/blog-single">Why your sales forecast is off</a><span>January 11, 2021</span></li>
-                                    <li>
-                                        <a title="" href="/blog-single">6 tips to retain your top sales talent</a><span>January 11, 2021</span></li>
-                                    <li>
-                                        <a title="" href="/blog-single">What the martian can teach sales</a><span>January 11, 2021</span></li>
-                                </ul>
-                        </aside>
-                        <aside class="widget widget-brochure">
-                            <div class="brochure-box-title">
-                                <h5 class="brochure-title">Butuh informasi ini?</h5>
-                                <p>
-                                    Informasi <strong>{{ $news->title }}</strong> dapat tersedia secara offline untuk kamu baca, kamu hanya perlu mengunduhnya dibawah ini.
-                                </p>
-                            </div>
-                            <p class="btn-download"><a title="Download PDF" class="pdf" id="btn-download" href="#">Download PDF</a></p>
-                        </aside>
-                    </div>
+                    <x-sidebar-news :news="$news"/>
                 </div>
             </div>
         </div>
@@ -133,14 +110,4 @@
 
 @section('script')
 <script type='text/javascript' src='https://platform-api.sharethis.com/js/sharethis.js#property=61d0f79d5d828a00190e4122&product=sop' async='async'></script>
-<script>
-    $(document).ready(main);
-
-    function main() {
-        $('#btn-download').on('click', (e) => {
-            e.preventDefault();
-            window.print();
-        });
-    }
-</script>
 @endsection
