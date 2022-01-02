@@ -132,8 +132,8 @@
 											<a href="blog.html" title="Potensi">Potensi  <i class="fa fa-angle-down" aria-hidden="true"></i></a>
 											<ul class="sub-menu">
 												<li><a href="#" title="">Produk Unggulan</a></li>
-												<li><a href="#" title="">Pusat Wisata</a></li>
-                                                <li><a href="#" title="">UKM Desa</a></li>
+												<li><a href="{{ route('potencies.tours.index') }}" title="">Pusat Wisata</a></li>
+                                                <li><a href="{{ route('potencies.ukm.index') }}" title="">UKM Desa</a></li>
 											</ul><!-- /.sub-menu -->
 										</li>
 										<li>

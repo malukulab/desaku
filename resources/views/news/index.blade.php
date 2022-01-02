@@ -5,7 +5,7 @@
     .page-title .page-title-heading, .page-title .breadcrumbs {
         float: none !important;
     }
-    .page-title .breadcrumbs  {
+    .page-title .breadcrumbs {
         margin-top: .2rem;
     }
 
@@ -46,7 +46,7 @@
 <div class="page-title">
     <div class="container">
         <div class="row">
-            <div class="col-md-12">
+            <div class="col-md-6">
                 <div class="page-title-heading">
                     <h1 class="h1-title">Informasi Berita</h1>
                 </div><!-- /.page-title-heading -->

@@ -2,6 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\NewsController;
+use App\Http\Controllers\ToursController;
+use App\Http\Controllers\UKMController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -23,3 +26,20 @@ Route::resource('berita', NewsController::class)
     ->parameters([
         'berita' => 'slug'
     ]);
+
+Route::prefix('/potensi')->name('potencies.')->group(function () {
+
+    Route::resource('ukm', UKMController::class)
+        ->names('ukm')
+        ->only(['index', 'show'])
+        ->parameters([
+            'ukm' => 'slug'
+        ]);
+
+    Route::resource('wisata', ToursController::class)
+        ->names('tours')
+        ->only(['index', 'show'])
+        ->parameters([
+            'wisata' => 'slug'
+        ]);
+});

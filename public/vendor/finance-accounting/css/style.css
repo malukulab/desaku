@@ -3730,3 +3730,7 @@ article.post .content-post {
     display: flex;
     flex-direction: column;
 }
+
+.page-title {
+    border-bottom: 1px solid #ddd;
+}
