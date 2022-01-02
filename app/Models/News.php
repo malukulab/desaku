@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\MorphToMany;
 use Illuminate\Support\Str;
 
 class News extends Model
@@ -24,6 +25,16 @@ class News extends Model
         return $builder->when(
             !is_null($slug),
             fn (Builder $builder) => $builder->whereSlug($slug)
+        );
+    }
+
+
+    public function categories(): MorphToMany
+    {
+        return $this->morphToMany(
+            Category::class,
+            'categoriable',
+            'model_has_categories',
         );
     }
 }

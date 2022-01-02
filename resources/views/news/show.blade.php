@@ -89,9 +89,11 @@
                                     <div class="tags-container">
                                         <h5>Kategori</h5>
                                         <div class="tag-cloud">
-                                            <a title="" class="tag-link" href="/blog-single">Creative</a>
-                                            <a title="" class="tag-link" href="/blog-single">Portfolio</a>
-                                            <a title="" class="tag-link" href="/blog-single">ThemeForest</a>
+                                            @foreach($news->categories as $category)
+                                            <a title="{{ $category->name }}" class="tag-link" href="">
+                                                {{ $category->name }}
+                                            </a>
+                                            @endforeach
                                         </div>
 
                                     </div>
