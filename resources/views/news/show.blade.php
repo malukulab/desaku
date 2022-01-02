@@ -74,7 +74,7 @@
                                 <div class="sharethis-inline-share-buttons"></div>
                             </div>
                             <div class="featured-post">
-                                <a title="" href="/blog-single">
+                                <a href="#">
                                     <img src="{{ asset('storage/hello.jpg') }}" alt="financial">
                                 </a>
                             </div>

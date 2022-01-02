@@ -68,7 +68,7 @@
                     <div class="col-md-4">
                         <article class="post">
                             <div class="featured-post">
-                                <a href="#" title="" class="post-image">
+                                <a href="{{ route('news.show', $item->slug) }}" title="{{ $item->title }}" class="post-image">
                                     <img src="{{ asset('storage/hello.jpg') }}" alt="img">
                                 </a>
                                 <ul class="post-date">
