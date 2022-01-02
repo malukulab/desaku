@@ -29,6 +29,17 @@
     .post:last-child {
         margin-bottom: 0;
     }
+    .not-found-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .not-found-container img {
+        width: 400px;
+    }
+    .not-found-container p {
+        font-size: 1.5rem;
+    }
 </style>
 @endsection
 @section('content')
@@ -84,7 +95,16 @@
                         </article><!-- /.post -->
                     </div>
                 @empty
-
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="not-found-container">
+                                    <img src="{{ asset('img/not-found-1.webp') }}" alt="not found"/>
+                                    <p>Pencarian "{{  $keyword  }}" tidak ditemukan</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
                 @endforelse
             </div>

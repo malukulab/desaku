@@ -15,7 +15,7 @@ class News extends Model
     {
         return $builder->when(
             Str::of($title)->trim()->isNotEmpty(),
-            fn (Builder $builder) => $builder->whereSlug($title)
+            fn (Builder $builder) => $builder->where('title', 'like', "%{$title}%")
         );
     }
 

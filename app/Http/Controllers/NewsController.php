@@ -12,10 +12,10 @@ class NewsController extends Controller
         $keyword = $request->get('keyword', '');
         $news = News::latest()
             ->search($keyword)
-            ->paginate(7)
+            ->paginate(9)
             ->appends('keyword');
 
-        return view('news.index', compact('news'));
+        return view('news.index', compact('news', 'keyword'));
     }
 
     public function show(string $slug)
@@ -23,7 +23,7 @@ class NewsController extends Controller
         $news = News::findBySlug($slug)->first();
 
         abort_unless(
-            is_null($news),
+            !is_null($news),
             404,
             'Berita yang dimaksud tidak ditemukan!'
         );
