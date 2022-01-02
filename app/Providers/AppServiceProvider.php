@@ -15,11 +15,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        View::composer('components.sidebar-news', function ($view) {
-            $listOfNews = News::latest()->limit(5)->get();
 
-            $view->with(compact('listOfNews'));
-        });
     }
 
     /**
@@ -29,6 +25,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        View::composer('components.sidebar-news', function ($view) {
+            $listOfNews = News::latest()->limit(5)->get();
+
+            $view->with(compact('listOfNews'));
+        });
     }
 }
