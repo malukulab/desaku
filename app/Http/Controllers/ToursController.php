@@ -16,13 +16,13 @@ class ToursController extends Controller
 
     public function show(string $slug)
     {
-        // $tour = Tour::whereSlug($slug)->first();
-        // abort_unless(
-        //     !is_null($tour),
-        //     404,
-        //     "Wista tidak ditemukan!"
-        // );
+        $tour = Tour::whereSlug($slug)->first();
+        abort_unless(
+            !is_null($tour),
+            404,
+            "Wista tidak ditemukan!"
+        );
 
-        return view('potencies.tours.show');
+        return view('potencies.tours.show', compact('tour'));
     }
 }

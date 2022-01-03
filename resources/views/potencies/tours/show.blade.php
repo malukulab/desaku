@@ -52,7 +52,7 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="page-title-heading">
-                    <h1 class="h1-title">Contoh Nama Produk</h1>
+                    <h1 class="h1-title">{{ $tour->title }}</h1>
                 </div><!-- /.page-title-heading -->
                 <div class="clearfix"></div><!-- /.clearfix -->
             </div>
@@ -68,8 +68,8 @@
                     <aside class="widget widget_nav_menu" aria-labelledby="sidebar">
                         <div class="menu-services-container" >
                             <ul class="menu menu-tab">
-                                <li class="active"><a href="#">Informasi wisata</a></li>
-                                <li><a href="#">Lokasi wisata</a></li>
+                                <li><a href="#content">Informasi wisata</a></li>
+                                <li><a href="#destination">Lokasi wisata</a></li>
                             </ul>
                         </div>
                     </aside> <!-- /.widget_nav_menu -->
@@ -101,13 +101,13 @@
                             </div> <!-- /.flat-slides -->
                         </div> <!-- /.wrar-slides -->
 
-                        <div class="box-content">
+                        <div class="box-content" id="content">
                             <div class="title">Mau tau informasi produk?</div>
-                            <p>In your life, you may have many times facing financial issues. It’s good if you know how to handle it by yourself and have enough time to take care of it. In other cases, it’s time you get a financial consulting service. And the article below will show you those cases.quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem.</p>
+                            <p>{{ $tour->content }}</p>
                         </div>
 
-                        <div class="box-content">
-                            <div class="title">Yuk, hubungi pelapak untuk mendapatkan produknya</div>
+                        <div class="box-content" id="destination">
+                            <div class="title">Yuk, kunjugi lokasi wisatanya</div>
                             <div class="map-container">
                                 <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3981.5787314251243!2d128.18832411451777!3d-3.682888843973487!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2d6ce8fdf19aca6d%3A0xbe0c10fee9afbd73!2sJl.%20Galunggung%2C%20Batu%20Merah%2C%20Sirimau%2C%20Kota%20Ambon%2C%20Maluku!5e0!3m2!1sid!2sid!4v1641106392149!5m2!1sid!2sid" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
                             </div>

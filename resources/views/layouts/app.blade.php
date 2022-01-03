@@ -139,7 +139,7 @@
 										<li>
 											<a href="#" title="">Galeri <i class="fa fa-angle-down" aria-hidden="true"></i></a>
                                             <ul class="sub-menu">
-												<li><a href="#" title="">Dokumentasi dan Kegiatan</a></li>
+												<li><a href="{{ route('galleries.index') }}" title="">Dokumentasi dan Kegiatan</a></li>
 
 											</ul><!-- /.sub-menu -->
 										</li>

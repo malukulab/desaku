@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateToursTable extends Migration
+class AddColumnSlugOnTours extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,8 @@ class CreateToursTable extends Migration
      */
     public function up()
     {
-        Schema::create('tours', function (Blueprint $table) {
-            $table->id();
-            $table->string('title');
-            $table->text('content');
-            $table->string('lat');
-            $table->string('long');
-            $table->timestamps();
+        Schema::table('tours', function(Blueprint $table) {
+            $table->string('slug')->after('title');
         });
     }
 
@@ -30,6 +25,6 @@ class CreateToursTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tours');
+        Schema::dropColumns('tours', ['slug']);
     }
 }

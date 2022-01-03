@@ -59,56 +59,54 @@
         </div>
     </div>
 </div>
-
-<section class="main-content blog-single-post">
+<section class="flat-row pd-services-post">
     <div class="container">
         <div class="row">
-            <div class="post-wrap">
-                @forelse ( $tours as $tour )
-                    <div class="col-md-4">
-                        <article class="post">
-                            <div class="featured-post">
-                                <a href="{{ route('news.show', $tour->slug) }}" title="{{ $tour->title }}" class="post-image">
-                                    <img src="{{ asset('storage/hello.jpg') }}" alt="img">
-                                </a>
-                                <ul class="post-date">
-                                    <li class="month">
-                                        {{ $tour->created_at->locale('id_ID')->isoFormat('LL') }}
-                                    </li>
-                                </ul>
-                            </div><!-- /.featured-post -->
-                            <div class="content-post">
-                                <h4 class="title-post">
-                                    <a href="#" title="">
+            <div class="col-md-12">
+                <div class="title-section center s1">
+                    <h2>Wisata? Ngak Usah Jauh-Jauh #DiNegeriHilaAja</h2>
+                    <p class="sub-title-section">
+                        Menyediakan Informasi mengenai Destinasi Wisata di Negeri Hila Kota Ambon
+                    </p>
+                </div><!-- /.title-section -->
+                <div class="dividers dividers-imagebox"></div>
+            </div>
+        </div><!-- /.row -->
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="wrap-imagebox-grid">
+                    @forelse ( $tours as $tour )
+                    <div class="flat-imagebox services-grid item">
+                        <div class="flat-imagebox-inner">
+                            <div class="flat-imagebox-image">
+                                <img src="{{ asset('storage/hello.jpg') }}" alt="img">
+                            </div>
+                            <div class="flat-imagebox-header">
+                                <h3 class="flat-imagebox-title">
+                                    <a href="{{ route('potencies.tours.show', $tour->slug) }}">
                                         {{ $tour->title }}
                                     </a>
-                                </h4>
-                                <div class="entry-post">
-                                    <p>
-                                        {{ str($tour->content)->limit(80) }}
-                                    </p>
-                                    <div class="more-link">
-                                        <a href="{{ route('news.show', $tour->slug) }}" title="">Baca selengkapnya</a>
-                                    </div>
-                                </div><!-- /.entry-post -->
-                            </div><!-- /.content-post -->
-                        </article><!-- /.post -->
-                    </div>
-                @empty
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-12">
-                                <div class="not-found-container">
-                                    <img src="{{ asset('img/not-found-1.webp') }}" alt="not found"/>
-                                    <p>Wisata belum tersedia</p>
+                                </h3>
+                            </div>
+                            <div class="flat-imagebox-content">
+                                <div class="flat-imagebox-desc">{{ str($tour->content)->limit(200) }}</div>
+                                <div class="flat-imagebox-button">
+                                    <a href="{{ route('potencies.tours.show', $tour->slug) }}">Selengkapnya</a>
                                 </div>
                             </div>
                         </div>
+                    </div> <!-- /.item .flat-imagebox -->
+                    @empty
+                    <div class="not-found-container">
+                        <img src="{{ asset('img/not-found-1.webp') }}" alt="not found"/>
+                        <p>Wisata belum tersedia</p>
                     </div>
-
-                @endforelse
+                    @endforelse
+                </div> <!-- /.wrap-imagebox-grid -->
             </div>
         </div>
+
         <div class="row">
             <div class="col-md-12">
                 <div class="dividers dividers-pagination"></div>
@@ -117,6 +115,7 @@
                 </div><!-- /.blog-pagination -->
             </div>
         </div>
-    </div>
-</section>
+    </div><!-- /.container -->
+</section><!-- /.flat-row-iconbox -->
+
 @endsection
