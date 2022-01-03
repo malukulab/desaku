@@ -62,7 +62,7 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="page-title-heading">
-                    <h1 class="h1-title">Overview</h1>
+                    <h1 class="h1-title">Contoh Nama Produk</h1>
                 </div><!-- /.page-title-heading -->
                 <div class="clearfix"></div><!-- /.clearfix -->
             </div>

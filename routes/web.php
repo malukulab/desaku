@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\ToursController;
 use App\Http\Controllers\UKMController;
+use App\Http\Controllers\GalleriesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -43,3 +44,11 @@ Route::prefix('/potensi')->name('potencies.')->group(function () {
             'wisata' => 'slug'
         ]);
 });
+
+
+Route::resource('galeri', GalleriesController::class)
+    ->only(['index', 'show'])
+    ->names('galleries')
+    ->parameters([
+        'galeri' => 'slug'
+    ]);
