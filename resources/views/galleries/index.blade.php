@@ -12,6 +12,34 @@
     .flat-row {
         margin-bottom: 2rem;
     }
+
+    .flat-imagebox-button a {
+        color: #1BB95F !important;
+        font-weight: 600 !important;
+        margin-top: .7rem;
+        display: block;
+    }
+
+    .flat-imagebox-button a i {
+        font-weight: 600;
+        margin-left: .3rem;
+    }
+    .title-post {
+        margin-bottom: .3rem !important;
+    }
+    .not-found-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 2rem;
+    }
+    .not-found-container img {
+        width: 400px;
+    }
+    .not-found-container p {
+        font-size: 1.5rem;
+        margin-top: -2rem !important;
+    }
 </style>
 
 @endsection
@@ -23,7 +51,7 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="page-title-heading">
-                    <h1 class="h1-title">Portfolio Load More</h1>
+                    <h1 class="h1-title">Dokumentasi dan Kegiatan</h1>
                 </div><!-- /.page-title-heading -->
                 <ul class="breadcrumbs">
                     <li><a href="#" title="">Beranda<i class="fa fa-angle-right" aria-hidden="true"></i></a></li>
@@ -43,8 +71,8 @@
                 <div class="col-md-12">
                     <ul class="portfolio-filter">
                             <li class="active"><a data-filter="*" href="#">Semua</a></li>
-                            <li><a data-filter=".business" href="#">Gambar</a></li>
-                            <li><a data-filter=".finance" href="#">Video</a></li>
+                            <li><a data-filter=".business" href="?content-type=image">Gambar</a></li>
+                            <li><a data-filter=".finance" href="?content-type=video">Video</a></li>
                     </ul><!-- /.project-filter -->
                 </div>
             </div>
@@ -55,6 +83,7 @@
             <div class="col-md-12">
                 <div class="dividers portfolio"></div>
                 <div class="flat-portfolio">
+                    @forelse ($galleries as $gallery)
                     <div class="portfolio-wrap grid one-three clearfix">
                         <div class="item business savings trading">
                             <div class="wrap-iconbox">
@@ -68,10 +97,31 @@
                                     <a href="#" title="">Services </a>/
                                     <a href="#" title=""> Trading</a>
                                 </div>
+                                <div class="flat-imagebox-content">
+                                    <div class="flat-imagebox-desc">Halo dunia</div>
+                                    <div class="flat-imagebox-button">
+                                        <a href="{{ route('galleries.show', $gallery->slug) }}">Selengkapnya <i class="fa fa-angle-right" aria-hidden="true"></i></a>
+                                    </div>
+                                </div>
                             </div> <!-- /.wrap-iconbox -->
                         </div><!-- /.portfolio-item -->
                     </div><!-- /.portfolio-wrap -->
+                    @empty
+                    <div class="not-found-container">
+                        <img src="{{ asset('img/not-found-1.webp') }}" alt="not found"/>
+                        <p>Dokumentasi belum tersedia</p>
+                    </div>
+                    @endforelse
                 </div><!-- /.flat-portfolio -->
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="dividers dividers-pagination"></div>
+                <div class="blog-single-pagination">
+                    {{ $galleries->links('pagination::bootstrap-4-finance') }}
+                </div><!-- /.blog-pagination -->
             </div>
         </div>
     </div>

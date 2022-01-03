@@ -3,12 +3,17 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Gallery;
 
 class GalleriesController extends Controller
 {
     public function index()
     {
-        return view('galleries.index');
+        $galleries = Gallery::latest()
+            ->paginate(9)
+            ->appends('content-type');
+
+        return view('galleries.index', compact('galleries'));
     }
 
 
