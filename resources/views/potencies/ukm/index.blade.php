@@ -19,6 +19,18 @@
         padding-top: 2.5rem;
     }
 
+    .not-found-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .not-found-container img {
+        width: 400px;
+    }
+    .not-found-container p {
+        font-size: 1.5rem;
+    }
+
 </style>
 @endsection
 @section('content')
@@ -57,26 +69,41 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="wrap-imagebox-grid">
-                    <div class="flat-imagebox services-grid item">
-                        <div class="flat-imagebox-inner">
-                            <div class="flat-imagebox-image">
-                                <img src="{{ asset('storage/hello.jpg') }}" alt="img">
-                            </div>
-                            <div class="flat-imagebox-header">
-                                <h3 class="flat-imagebox-title">
-                                    <a href="#">Mutual Funds</a>
-                                </h3>
-                            </div>
-                            <div class="flat-imagebox-content">
-                                <div class="flat-imagebox-desc">Mutual funds pool money from many investors to purchase broad range of investments, such as stocks.</div>
-                                <div class="flat-imagebox-button">
-                                    <a href="#" target="_blank">Selengkapnya</a>
+                    @forelse ($businessProducts as $product)
+                        <div class="flat-imagebox services-grid item">
+                            <div class="flat-imagebox-inner">
+                                <div class="flat-imagebox-image">
+                                    <img src="{{ asset('storage/hello.jpg') }}" alt="img">
+                                </div>
+                                <div class="flat-imagebox-header">
+                                    <h3 class="flat-imagebox-title">
+                                        <a href="#">
+                                            {{ $product->title }}
+                                        </a>
+                                    </h3>
+                                </div>
+                                <div class="flat-imagebox-content">
+                                    <div class="flat-imagebox-desc">
+                                        {{ str($product->content)->limit(100) }}
+                                    </div>
+                                    <div class="flat-imagebox-button">
+                                        <a href="{{ route('potencies.ukm.show', $product->slug) }}">Selengkapnya</a>
+                                    </div>
                                 </div>
                             </div>
+                        </div> <!-- /.item .flat-imagebox -->
+                    @empty
+                        <div class="not-found-container">
+                            <img src="{{ asset('img/not-found-1.webp') }}" alt="not found"/>
+                            <p>Produk UKM belum tersedia</p>
                         </div>
-                    </div> <!-- /.item .flat-imagebox -->
-
+                    @endforelse
                 </div> <!-- /.wrap-imagebox-grid -->
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                {{ $businessProducts->links('pagination::bootstrap-4-finance') }}
             </div>
         </div>
     </div><!-- /.container -->

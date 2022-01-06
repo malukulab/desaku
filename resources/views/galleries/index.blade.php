@@ -83,35 +83,38 @@
             <div class="col-md-12">
                 <div class="dividers portfolio"></div>
                 <div class="flat-portfolio">
-                    @forelse ($galleries as $gallery)
                     <div class="portfolio-wrap grid one-three clearfix">
+                        @forelse ($galleries as $gallery)
                         <div class="item business savings trading">
                             <div class="wrap-iconbox">
                                 <div class="featured-post">
                                     <img src="{{ asset('storage/hello.jpg') }}" alt="img">
                                 </div>
                                 <div class="title-post">
-                                    <a href="#">Business Solutions</a>
+                                    <a href="#">{{ $gallery->title }}</a>
                                 </div>
                                 <div class="category-post">
-                                    <a href="#" title="">Services </a>/
-                                    <a href="#" title=""> Trading</a>
+                                    <a href="#" title="">
+                                        {{ $gallery->created_at->locale('id_ID')->isoFormat('LLL') }}
+                                    </a>
                                 </div>
                                 <div class="flat-imagebox-content">
-                                    <div class="flat-imagebox-desc">Halo dunia</div>
+                                    <div class="flat-imagebox-desc">
+                                        {{ str($gallery->content)->limit(120) }}
+                                    </div>
                                     <div class="flat-imagebox-button">
                                         <a href="{{ route('galleries.show', $gallery->slug) }}">Selengkapnya <i class="fa fa-angle-right" aria-hidden="true"></i></a>
                                     </div>
                                 </div>
                             </div> <!-- /.wrap-iconbox -->
                         </div><!-- /.portfolio-item -->
+                        @empty
+                        <div class="not-found-container">
+                            <img src="{{ asset('img/not-found-1.webp') }}" alt="not found"/>
+                            <p>Dokumentasi belum tersedia</p>
+                        </div>
+                        @endforelse
                     </div><!-- /.portfolio-wrap -->
-                    @empty
-                    <div class="not-found-container">
-                        <img src="{{ asset('img/not-found-1.webp') }}" alt="not found"/>
-                        <p>Dokumentasi belum tersedia</p>
-                    </div>
-                    @endforelse
                 </div><!-- /.flat-portfolio -->
             </div>
         </div>

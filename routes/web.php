@@ -1,9 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\BusinessProductController;
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\ToursController;
-use App\Http\Controllers\UKMController;
 use App\Http\Controllers\GalleriesController;
 
 /*
@@ -30,11 +31,18 @@ Route::resource('berita', NewsController::class)
 
 Route::prefix('/potensi')->name('potencies.')->group(function () {
 
-    Route::resource('ukm', UKMController::class)
+    Route::resource('ukm', BusinessProductController::class)
         ->names('ukm')
         ->only(['index', 'show'])
         ->parameters([
             'ukm' => 'slug'
+        ]);
+
+    Route::resource('produk', ProductController::class)
+        ->names('products')
+        ->only(['index', 'show'])
+        ->parameters([
+            'produk' => 'slug'
         ]);
 
     Route::resource('wisata', ToursController::class)
