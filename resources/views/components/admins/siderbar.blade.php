@@ -60,17 +60,10 @@
                 </li>
 
                 <li>
-                    <a href="javascript: void(0);" class="has-arrow waves-effect">
+                    <a href="#" class="waves-effect">
                         <i class="mdi mdi-card-text"></i>
                         <span>Informasi Berita</span>
                     </a>
-                    <ul class="sub-menu" aria-expanded="false">
-                        <li><a href="email-inbox.html">Budaya</a></li>
-                        <li><a href="email-read.html">Dokumentasi</a></li>
-                        <li><a href="email-compose.html">Kegiatan</a></li>
-                        <li><a href="email-inbox.html">Informasi Grafis</a></li>
-                        <li><a href="email-inbox.html">Kumpulan Berkas Media</a></li>
-                    </ul>
                 </li>
                 <li>
                     <a href="javascript: void(0);" class="has-arrow waves-effect">

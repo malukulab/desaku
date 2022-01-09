@@ -12,6 +12,21 @@ class News extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'title',
+        'slug',
+        'content'
+    ];
+
+
+    protected static function booted() {
+
+        static::saving(function ($news) {
+            $slug = Str::of($news->title)->slug();
+            $news->slug = $slug;
+        });
+    }
+
     public function scopeSearch(Builder $builder, string $title): Builder
     {
         return $builder->when(
@@ -35,6 +50,15 @@ class News extends Model
             Category::class,
             'categoriable',
             'model_has_categories',
+        );
+    }
+
+    public function attachments(): MorphToMany
+    {
+        return $this->morphToMany(
+            Attachment::class,
+            'record',
+            'model_has_attachments'
         );
     }
 }
