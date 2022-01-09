@@ -11,6 +11,8 @@ class Attachment extends Model
 {
     use HasFactory;
 
+    protected $guarded = ['id'];
+
     public static function fromFile(UploadedFile $file, string $filename)
     {
         return static::create([
@@ -18,7 +20,13 @@ class Attachment extends Model
             'filename' => Str::of($filename)->split('/\//')->last(),
             'content_type' => $file->getMimeType(),
             'path' => $filename,
-            'byte_size' => $file->getSize()
+            'size' => $file->getSize()
         ]);
+    }
+
+
+    public function getIsImageAttribute(): bool
+    {
+        return preg_match('/image\/*/', $this->content_type);
     }
 }

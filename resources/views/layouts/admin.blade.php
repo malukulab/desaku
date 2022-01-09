@@ -8,7 +8,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
         <meta content="Themesbrand" name="author" />
-
+        <!-- CSRF Token -->
+        <meta name="csrf-token" content="{{ csrf_token() }}">
         <!-- Bootstrap Css -->
         <link href="{{ asset('vendor/lexa-admin/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css" />
         <!-- Icons Css -->
@@ -62,10 +63,15 @@
 
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                         <a class="dropdown-item" href="{{ route('admin.news.create') }}">Berita</a>
-                        <a class="dropdown-item" href="#">Dokumentasi</a>
-                        <a class="dropdown-item" href="#">Something else here</a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">Separated link</a>
+                        <a class="dropdown-item" href="#">Dokumentasi</a>
+                        <a class="dropdown-item" href="#">Kegiatan</a>
+                        <a class="dropdown-item" href="#">Budaya</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="{{ route('admin.products.create') }}">Produk Unggulan</a>
+                        <a class="dropdown-item" href="{{ route('admin.ukm.create') }}">Produk UKM</a>
+                        <a class="dropdown-item" href="#">Destinasi Wisata</a>
+
                     </div>
                 </div>
             </div>
