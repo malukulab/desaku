@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\NewsController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\BusinessProductController;
+use App\Http\Controllers\Admin\ToursController;
 use App\Http\Controllers\Admin\UploadersController;
 
 Route::get('/', DashboardController::class)
@@ -22,6 +23,12 @@ Route::prefix('/potensi')->group(function () {
         ->names('products')
         ->parameters([
             'produk' => 'id'
+        ]);
+
+    Route::resource('wisata', ToursController::class)
+        ->names('tours')
+        ->parameters([
+            'wisata' => 'id'
         ]);
 
     Route::resource('ukm', BusinessProductController::class)
