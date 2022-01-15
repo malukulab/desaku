@@ -70,7 +70,7 @@
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="{{ route('admin.products.create') }}">Produk Unggulan</a>
                         <a class="dropdown-item" href="{{ route('admin.ukm.create') }}">Produk UKM</a>
-                        <a class="dropdown-item" href="#">Destinasi Wisata</a>
+                        <a class="dropdown-item" href="{{ route('admin.tours.create') }}">Destinasi Wisata</a>
 
                     </div>
                 </div>

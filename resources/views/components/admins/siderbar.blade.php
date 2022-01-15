@@ -34,7 +34,7 @@
                                 <span>Potensi desa</span>
                             </a>
                             <ul class="sub-menu" aria-expanded="false">
-                                <li><a href="#">Destinasi Wisata</a></li>
+                                <li><a href="{{ route('admin.tours.index') }}">Destinasi Wisata</a></li>
                                 <li><a href="{{ route('admin.products.index') }}">Produk Unggulan</a></li>
                                 <li><a href="{{ route('admin.ukm.index') }}">UKM</a></li>
                             </ul>

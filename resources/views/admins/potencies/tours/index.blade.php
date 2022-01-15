@@ -20,10 +20,11 @@
 <div class="row">
     <div class="col-12">
         <div class="page-title-box">
-            <h4>Informasi Produk UKM</h4>
+            <h4>Informasi Wisata Negri Hila</h4>
             <ol class="breadcrumb m-0">
                 <li class="breadcrumb-item"><a href="javascript: void(0);">Beranda</a></li>
-                <li class="breadcrumb-item active">Produk UKM</li>
+                <li class="breadcrumb-item">Potensi</li>
+                <li class="breadcrumb-item active">Wisata</li>
             </ol>
         </div>
     </div>
