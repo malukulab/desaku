@@ -5,8 +5,11 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\NewsController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\BusinessProductController;
+use App\Http\Controllers\Admin\DocumentationsController;
 use App\Http\Controllers\Admin\ToursController;
 use App\Http\Controllers\Admin\UploadersController;
+use App\Http\Controllers\Admin\CulturesController;
+use App\Http\Controllers\Admin\ActivitiesController;
 
 Route::get('/', DashboardController::class)
     ->name('index');
@@ -35,6 +38,26 @@ Route::prefix('/potensi')->group(function () {
         ->names('ukm')
         ->parameters([
             'ukm' => 'id'
+        ]);
+});
+
+Route::prefix('/galeri')->group(function () {
+    Route::resource('budaya', CulturesController::class)
+        ->names('cultures')
+        ->parameters(([
+            'budaya' => 'id'
+        ]));
+
+    Route::resource('kegiatan', ActivitesController::class)
+        ->names('activities')
+        ->parameters([
+            'kegiatan' => 'id'
+        ]);
+
+    Route::resource('dokumentasi', DocumentationsController::class)
+        ->names('documentation')
+        ->parameters([
+            'dokumentasi' => 'id'
         ]);
 });
 

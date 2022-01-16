@@ -71,9 +71,9 @@
                         <span>Galleri dan Media</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
-                        <li><a href="#">Budaya</a></li>
-                        <li><a href="#">Dokumentasi</a></li>
-                        <li><a href="#">Kegiatan</a></li>
+                        <li><a href="{{ route('admin.cultures.index') }}">Budaya</a></li>
+                        <li><a href="{{ route('admin.documentation.index') }}">Dokumentasi</a></li>
+                        <li><a href="{{ route('admin.activities.index') }}">Kegiatan</a></li>
                         <li><a href="#">Informasi Grafis</a></li>
                         <li><a href="#">Kumpulan Berkas Media</a></li>
                     </ul>

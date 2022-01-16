@@ -64,9 +64,9 @@
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                         <a class="dropdown-item" href="{{ route('admin.news.create') }}">Berita</a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">Dokumentasi</a>
-                        <a class="dropdown-item" href="#">Kegiatan</a>
-                        <a class="dropdown-item" href="#">Budaya</a>
+                        <a class="dropdown-item" href="{{ route('admin.documentation.create') }}">Dokumentasi</a>
+                        <a class="dropdown-item" href="{{ route('admin.activities.create') }}">Kegiatan</a>
+                        <a class="dropdown-item" href="{{ route('admin.cultures.create') }}">Budaya</a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="{{ route('admin.products.create') }}">Produk Unggulan</a>
                         <a class="dropdown-item" href="{{ route('admin.ukm.create') }}">Produk UKM</a>
