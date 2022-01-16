@@ -18,11 +18,11 @@
 <div class="row">
     <div class="col-12">
         <div class="page-title-box">
-            <h4>Ubah Informasi Budaya</h4>
+            <h4>Ubah Dokumentasi Negri Hila</h4>
             <ol class="breadcrumb m-0">
                 <li class="breadcrumb-item"><a href="javascript: void(0);">Beranda</a></li>
-                <li class="breadcrumb-item"><a href="javascript: void(0);">Galeri</a></li>
-                <li class="breadcrumb-item active">Budaya</li>
+                <li class="breadcrumb-item">Galeri</li>
+                <li class="breadcrumb-item active">Dokumentasi</li>
             </ol>
         </div>
     </div>
@@ -34,20 +34,20 @@
         <div class="card">
             <div class="card-body">
 
-                <h4 class="card-title">Budaya Negeri Hila</h4>
+                <h4 class="card-title">Dokumentasi Negeri Hila</h4>
                 <p class="card-title-desc">
-                    Ubah dan terbitkan informasi budaya negeri Hila Anda
+                    Ubah dan terbitkan dokumentasi negeri Hila Anda
                 </p>
-                <form method="POST" action="{{ route('admin.cultures.update', $culture->id)) }}" enctype="multipart/form-data">
+                <form method="POST" action="{{ route('admin.documentations.update', $documentation->id) }}" enctype="multipart/form-data">
                     @csrf
                     <div class="row">
                         <div class="col-md-8 offset-md-2">
                             <div class="form-group mb-4">
                                 <label for="input-title">
-                                    Nama budaya
+                                    Nama dokumentasi
                                 </label>
                                 <div>
-                                    <input value="{{ $culture->title }}" class="form-control" placeholder="Masukan nama produk.." type="text" name="title" id="input-title">
+                                    <input value="{{ $documentation->title }}" class="form-control" placeholder="Masukan nama dokumentasi.." type="text" name="title" id="input-title">
                                     @error('title')
                                     <span class="text-danger d-inline-block mt-2">
                                         {{ $message }}
@@ -60,7 +60,7 @@
                                     Konten
                                 </label>
                                 <div>
-                                    <textarea id="editor" name="content">{{ $culture->content }}</textarea>
+                                    <textarea id="editor" name="content">{{ $documentation->content }}</textarea>
                                     @error('content')
                                     <span class="text-danger d-inline-block mt-2">
                                         {{ $message }}
@@ -87,7 +87,7 @@
 
 
                             <div class="form-group mb-5">
-                                <button class="btn btn-primary">Simpan perubahan</button>
+                                <button class="btn btn-primary">Simpan</button>
                             </div>
                         </div>
                     </div>
