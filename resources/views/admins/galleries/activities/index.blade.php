@@ -20,7 +20,7 @@
 <div class="row">
     <div class="col-12">
         <div class="page-title-box">
-            <h4>Informasi Daftar Kegiatan</h4>
+            <h4>Informasi Kegiatan Negri Hila</h4>
             <ol class="breadcrumb m-0">
                 <li class="breadcrumb-item"><a href="javascript: void(0);">Beranda</a></li>
                 <li class="breadcrumb-item">Galeri</li>
@@ -36,9 +36,9 @@
         <div class="card">
             <div class="card-body">
 
-                <h4 class="card-title">Semua Daftar Kegiatan</h4>
+                <h4 class="card-title">Semua Kegiatan Negeri Hila</h4>
                 <p class="card-title-desc">
-                    Semua informasi kegiatan yang Anda memiliki {{ $tours->count() }}.
+                    Semua informasi kegiatan negeri Hila yang pernah diterbitkan, dan memiliki {{ $activities->count() }} budaya.
                 </p>
 
                 <div class="table-responsive">
@@ -46,28 +46,28 @@
                         <thead>
                             <tr>
                                 <th>No</th>
-                                <th>Judul</th>
+                                <th>Nama kegiatan</th>
                                 <th>Tindakan</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @forelse($tours as $tour)
+                            @forelse($activities as $activity)
                             <tr data-id="1">
                                 <td data-field="id" style="width: 80px">
                                     {{ $loop->iteration }}.
                                 </td>
                                 <td data-field="name">
-                                    <strong>{{ str($tour->title)->limit(200) }}</strong>
+                                    <strong>{{ str($activity->title)->limit(200) }}</strong>
                                     <span class="d-block text-secondary mt-1">
-                                        {{ $tour->created_at->locale('id_ID')->isoFormat('LLL') }}
+                                        {{ $activity->created_at->locale('id_ID')->isoFormat('LLL') }}
                                     </span>
                                 </td>
 
                                 <td style="width: 100px">
-                                    <a href="{{ route('admin.tours.edit', $tour->id) }}" class="btn btn-outline-secondary edit" title="Edit">
+                                    <a href="{{ route('admin.activities.edit', $activity->id) }}" class="btn btn-outline-secondary edit" title="Edit">
                                         <i class="fas fa-pencil-alt"></i>
                                     </a>
-                                    <form action="{{ route('admin.tours.destroy', $tour->id) }}" method="POST" class="d-inline-block">
+                                    <form action="{{ route('admin.activities.destroy', $activity->id) }}" method="POST" class="d-inline-block">
                                         @method('DELETE')
                                         @csrf
                                         <button onclick="return confirm('Yakin ingin menghapus ini?')" class="btn btn-outline-danger edit" title="Hapus">
@@ -79,7 +79,7 @@
                             @empty
                             <tr>
                                 <td>
-                                    Data wisata yang di inginkan tidak ditemukan.
+                                    Data kegiatan yang di inginkan tidak ditemukan.
                                 </td>
                             </tr>
                             @endforelse

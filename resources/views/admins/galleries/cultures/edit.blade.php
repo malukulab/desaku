@@ -40,6 +40,7 @@
                 </p>
                 <form method="POST" action="{{ route('admin.cultures.update', $culture->id)) }}" enctype="multipart/form-data">
                     @csrf
+                    @method('PUT')
                     <div class="row">
                         <div class="col-md-8 offset-md-2">
                             <div class="form-group mb-4">

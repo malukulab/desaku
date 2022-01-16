@@ -4,63 +4,65 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Activity;
+use App\Http\Requests\ActivityRequest;
 
 class ActivitiesController extends Controller
 {
     public function index()
     {
-        $cultures = Culture::latest()->get();
+        $activities = Activity::latest()->get();
 
-        return view('admins.galleries.cultures.index', compact('cultures'));
+        return view('admins.galleries.activities.index', compact('activities'));
     }
 
 
     public function create()
     {
-        return view('admins.galleries.cultures.create');
+        return view('admins.galleries.activities.create');
     }
 
-    public function store(CultureRequest $request)
+    public function store(ActivityRequest $request)
     {
         $body = $request->all();
 
-        Culture::create($body);
+        Activity::create($body);
 
         return redirect()
-            ->route('admin.cultures.index')
-            ->with('message', 'Berhasil menambahkan budaya');
+            ->route('admin.activities.index')
+            ->with('message', 'Berhasil menambahkan kegiatan');
     }
 
 
     public function edit($id)
     {
-        $culture = Culture::findOrFail($id);
+        $activity = Activity::findOrFail($id);
 
-        return view('admins.galleries.cultures.edit', compact('culture'));
+        return view('admins.galleries.activities.edit', compact('activity'));
     }
 
 
-    public function update(CultureRequest $request, $id)
+    public function update(ActivityRequest $request, $id)
     {
         $body = $request->all();
-        $culture = Culture::findOrFail($id);
+        $activity = Activity::findOrFail($id);
 
-        $culture->update($body);
+        $activity->update($body);
 
         return redirect()
-            ->route('admin.cultures.index')
-            ->with('message', 'Berhasil menggubah data budaya');
+            ->route('admin.Activitys.index')
+            ->with('message', 'Berhasil menggubah data kegiatan');
 
     }
 
 
     public function destroy($id)
     {
-        $culture = Culture::findOrFail($id);
-        $culture->delete();
+        $activity = Activity::findOrFail($id);
+        $activity->delete();
 
         return redirect()
             ->back()
-            ->with('message', 'Berhasil menghapus data budaya');
+            ->with('message', 'Berhasil menghapus data kegiatan');
     }
 }

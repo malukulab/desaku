@@ -48,7 +48,7 @@ Route::prefix('/galeri')->group(function () {
             'budaya' => 'id'
         ]));
 
-    Route::resource('kegiatan', ActivitesController::class)
+    Route::resource('kegiatan', ActivitiesController::class)
         ->names('activities')
         ->parameters([
             'kegiatan' => 'id'
