@@ -38,7 +38,7 @@
                 <p class="card-title-desc">
                     Ubah dan terbitkan informasi budaya negeri Hila Anda
                 </p>
-                <form method="POST" action="{{ route('admin.cultures.update', $culture->id)) }}" enctype="multipart/form-data">
+                <form method="POST" action="{{ route('admin.cultures.update', $culture->id) }}" enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
                     <div class="row">

@@ -38,7 +38,7 @@
                 <p class="card-title-desc">
                     Ubah dan terbitkan informasi kegiatan negeri Hila Anda
                 </p>
-                <form method="POST" action="{{ route('admin.activities.update', $activity->id)) }}" enctype="multipart/form-data">
+                <form method="POST" action="{{ route('admin.activities.update', $activity->id) }}" enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
                     <div class="row">
