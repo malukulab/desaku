@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\ToursController;
 use App\Http\Controllers\Admin\UploadersController;
 use App\Http\Controllers\Admin\CulturesController;
 use App\Http\Controllers\Admin\ActivitiesController;
+use App\Http\Controllers\Admin\Village\GeneralController;
 
 Route::get('/', DashboardController::class)
     ->name('index');
@@ -59,6 +60,11 @@ Route::prefix('/galeri')->group(function () {
         ->parameters([
             'dokumentasi' => 'id'
         ]);
+});
+
+Route::prefix('desa')->as('village.')->group(function () {
+    Route::get('/umum', [GeneralController::class, 'index'])
+        ->name('general');
 });
 
 

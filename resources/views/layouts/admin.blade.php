@@ -363,14 +363,9 @@
         <script src="{{ asset('vendor/lexa-admin/libs/node-waves/waves.min.js') }}"></script>
         <script src="{{ asset('vendor/lexa-admin/libs/jquery-sparkline/jquery.sparkline.min.js') }}"></script>
 
-        <!--Morris Chart-->
-        <script src="{{ asset('vendor/lexa-admin/libs/morris.js/morris.min.js') }}"></script>
-        <script src="{{ asset('vendor/lexa-admin/libs/raphael/raphael.min.js') }}"></script>
-
         <script src="{{ asset('vendor/lexa-admin/js/pages/dashboard.init.js') }}"></script>
 
         @yield('script')
-
         <script src="{{ asset('vendor/lexa-admin/js/app.js') }}"></script>
 
     </body>
