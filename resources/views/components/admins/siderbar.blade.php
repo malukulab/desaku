@@ -48,14 +48,12 @@
                         <span>Demografi Desa</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
-                        <li><a href="#">Data Umum</a></li>
+                        <li><a href="{{ route('admin.village.general') }}">Data Umum</a></li>
                         <li><a href="#">Data Kewenangan</a></li>
                         <li><a href="#">Data Keuangan</a></li>
                         <li><a href="#">Data Kelembangaan</a></li>
-                        <li><a href="#">Data Trantrib dan Bencana</a></li>
-                        <li><a href="#">Data Penduduk</a></li>
-                        <li><a href="#">Data Pendidikan</a></li>
-                        <li><a href="#">Data Pekerjaan</a></li>
+                        <li><a href="{{ route('admin.village.trantib') }}">Data Trantrib dan Bencana</a></li>
+                        <li><a href="{{ route('admin.village.education') }}">Data Pendidikan</a></li>
                     </ul>
                 </li>
 

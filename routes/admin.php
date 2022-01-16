@@ -10,7 +10,9 @@ use App\Http\Controllers\Admin\ToursController;
 use App\Http\Controllers\Admin\UploadersController;
 use App\Http\Controllers\Admin\CulturesController;
 use App\Http\Controllers\Admin\ActivitiesController;
+use App\Http\Controllers\Admin\Village\EducationsController;
 use App\Http\Controllers\Admin\Village\GeneralController;
+use App\Http\Controllers\Admin\Village\TrantibController;
 
 Route::get('/', DashboardController::class)
     ->name('index');
@@ -65,6 +67,12 @@ Route::prefix('/galeri')->group(function () {
 Route::prefix('desa')->as('village.')->group(function () {
     Route::get('/umum', [GeneralController::class, 'index'])
         ->name('general');
+
+    Route::get('/trantib', [TrantibController::class, 'index'])
+        ->name('trantib');
+
+    Route::get('/pendidikan', [EducationsController::class, 'index'])
+        ->name('education');
 });
 
 
