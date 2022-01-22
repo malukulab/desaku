@@ -30,8 +30,12 @@ class ChangeCarousellController extends Controller
 
         Setting::create([
             'key' => 'carousell',
-            'data' => json_encode($data)
+            'data' => $data
         ]);
+
+        return redirect()
+            ->back()
+            ->with('message', 'Berhasil menambahkan gambar');
     }
 
 
