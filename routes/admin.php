@@ -10,6 +10,10 @@ use App\Http\Controllers\Admin\ToursController;
 use App\Http\Controllers\Admin\UploadersController;
 use App\Http\Controllers\Admin\CulturesController;
 use App\Http\Controllers\Admin\ActivitiesController;
+use App\Http\Controllers\Admin\ApparatusController;
+use App\Http\Controllers\Admin\LoginController;
+use App\Http\Controllers\Admin\Settings\ChangeCarousellController;
+use App\Http\Controllers\Admin\Settings\ChangeLogoController;
 use App\Http\Controllers\Admin\Village\EducationsController;
 use App\Http\Controllers\Admin\Village\GeneralController;
 use App\Http\Controllers\Admin\Village\TrantibController;
@@ -75,8 +79,36 @@ Route::prefix('desa')->as('village.')->group(function () {
         ->name('education');
 });
 
+Route::resource('aparatur-desa', ApparatusController::class)
+    ->names('apparatus')
+    ->parameters([
+        'aparatur-desa' => 'id'
+    ]);
 
 Route::resource('uploaders', UploadersController::class)
     ->parameters([
         'uploader' => 'id'
     ]);
+
+Route::prefix('/pengaturan')->as('settings.')->group(function () {
+    Route::get('/logo', [ChangeLogoController::class, 'index'])
+        ->name('logo.index');
+
+    Route::put('/logo', [ChangeLogoController::class, 'update'])
+        ->name('logo.update');
+
+    Route::resource('banner', ChangeCarousellController::class)
+        ->names('carousell')
+        ->only(['index', 'store', 'destroy'])
+        ->parameters([
+            'banner' => 'id'
+        ]);
+
+});
+
+
+Route::view('/login', 'auth.login')
+    ->name('login');
+
+Route::post('/login', [LoginController::class, 'store'])
+    ->name('login.store');

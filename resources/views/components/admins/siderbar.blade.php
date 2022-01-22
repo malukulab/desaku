@@ -86,8 +86,8 @@
                         <span>Pengaturan</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
-                            <li><a href="#">Ubah logo</a></li>
-                            <li><a href="#">Gambar Hal. Depan</a></li>
+                            <li><a href="{{ route('admin.settings.logo.index') }}">Ubah logo</a></li>
+                            <li><a href="{{ route('admin.settings.carousell.index') }}">Gambar Hal. Depan</a></li>
                     </ul>
                 </li>
             </ul>
