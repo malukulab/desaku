@@ -20,12 +20,15 @@
     <div class="col-12">
         <div class="card">
             <div class="card-body">
-
-                <h4 class="card-title">Semua Informasi Berita</h4>
-                <p class="card-title-desc">
-                    Semua informasi berita yang pernah diterbitkan, dan memiliki 78 berita.
-                </p>
-
+                <div class="d-flex justify-content-between align-items-start">
+                    <div>
+                        <h4 class="card-title">Semua Informasi Berita</h4>
+                        <p class="card-title-desc">
+                            Semua informasi berita yang pernah diterbitkan, dan memiliki 78 berita.
+                        </p>
+                    </div>
+                    <a class="btn btn-primary" href="{{ route('admin.news.create') }}">Tambahkan berita</a>
+                </div>
                 <div class="table-responsive">
                     <table class="table table-editable table-nowrap align-middle table-edits">
                         <thead>
@@ -44,10 +47,13 @@
                                 <td data-field="name">
                                     <strong>{{ str($item->title)->limit(200) }}</strong>
                                     <span class="d-block text-secondary mt-1">
-                                        {{ $item->created_at->locale('id_ID')->isoFormat('LLL') }}
+                                        {{ $item->created_at->locale('id_ID')->isoFormat('LLL') }} • <span class="badge bg-success">Aktif</span>
                                     </span>
                                 </td>
                                 <td style="width: 100px">
+                                    <a href="#" class="btn btn-outline-secondary edit" title="Edit">
+                                        <i class="fas fa-eye"></i>
+                                    </a>
                                     <a href="{{ route('admin.news.edit', $item->id) }}" class="btn btn-outline-secondary edit" title="Edit">
                                         <i class="fas fa-pencil-alt"></i>
                                     </a>

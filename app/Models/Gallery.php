@@ -14,4 +14,7 @@ class Gallery extends Model
     {
         return $builder;
     }
+
+
+
 }

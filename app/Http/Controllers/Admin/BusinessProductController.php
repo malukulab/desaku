@@ -16,4 +16,8 @@ class BusinessProductController extends ProductController
         'edit' => 'admins.potencies.ukm.edit',
     ];
 
+    protected array $routes = [
+        'index' => 'admin.ukm.index',
+    ];
+
 }

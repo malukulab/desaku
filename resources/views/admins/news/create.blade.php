@@ -90,7 +90,8 @@
                             </div>
 
                             <div class="form-group">
-                                <button class="btn btn-primary">Tambahkan</button>
+                                <button class="btn btn-primary">Simpan</button>
+                                <button type="reset" class="btn btn-warning">Batal</button>
                             </div>
                         </div>
                     </div>
@@ -110,6 +111,7 @@
     $(document).ready(function () {
         tinymce.init({
             selector: 'textarea#editor',
+            plugins: 'image,media',
             height: 400,
             width: '100%'
         });

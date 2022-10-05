@@ -3,6 +3,14 @@
 
 @section('head')
 <link href="{{ asset('vendor/lexa-admin/libs/select2/css/select2.min.css') }}" rel="stylesheet" type="text/css" />
+<style>
+    .preview img {
+        width: 270px;
+        height: 180px;
+        object-fit: cover;
+        margin: 1rem 0;
+    }
+</style>
 @endsection
 
 
@@ -85,7 +93,7 @@
                                 <input class="form-control" type="file" id="input-file" name="cover">
 
                                 @if ($news->attachments->count() > 0)
-                                <div>
+                                <div class="preview">
                                     <img src="{{ asset('storage/'. $news->attachments[0]->path) }}" alt="Gambar" />
                                 </div>
                                 @endif
@@ -98,6 +106,7 @@
 
                             <div class="form-group">
                                 <button class="btn btn-primary">Simpan perubahan</button>
+                                <button type="reset" class="btn btn-warning">Batal</button>
                             </div>
                         </div>
                     </div>
@@ -118,6 +127,7 @@
         tinymce.init({
             selector: 'textarea#editor',
             height: 400,
+            plugins: 'image,media',
             width: '100%'
         });
 

@@ -27,6 +27,18 @@
                         @method('POST')
                         @csrf
                         <div class="form-group">
+                            <label for="">Judul</label>
+                            <div class="input-group mb-3">
+                                <input type="text" class="form-control" name="title">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="">Konten</label>
+                            <div class="input-group mb-3">
+                                <textarea name="description" id="" cols="30" rows="10" class="form-control"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group">
                             <label for="">Upload gambar</label>
                             <div class="input-group mb-3">
                                 <input type="file" name="image" class="form-control" id="inputGroupFile03" aria-describedby="inputGroupFileAddon03" aria-label="Upload">

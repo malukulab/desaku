@@ -3,6 +3,17 @@
 
 @section('head')
 <style>
+    .page-title .page-title-heading, .page-title .breadcrumbs {
+        float: none !important;
+    }
+    .page-title .breadcrumbs {
+        margin-top: .2rem;
+    }
+
+    .page-title {
+        margin-bottom: -1rem;
+    }
+
     .entry-meta {
         margin-bottom: 0 !important;
     }
@@ -45,10 +56,30 @@
             border-radius: 6px;
         }
     }
+    .featured-post img {
+        width: 100%;
+    }
 </style>
 @endsection
 
 @section('content')
+    <div class="page-title">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="page-title-heading">
+                        <h1 class="h1-title">{{ $news->title }}</h1>
+                    </div><!-- /.page-title-heading -->
+                    <ul class="breadcrumbs">
+                        <li><a href="#" title="Beranda">Beranda<i class="fa fa-angle-right" aria-hidden="true"></i></a></li>
+                        <li><a href="#" title="Seni">Berita<i class="fa fa-angle-right" aria-hidden="true"></i></a></li>
+                        <li><a href="#" title="{{ $news->title }}">{{ $news->title  }}</a></li>
+                    </ul><!-- /.breadcrumbs -->
+                    <div class="clearfix"></div><!-- /.clearfix -->
+                </div>
+            </div>
+        </div>
+    </div>
     <section class="main-content">
         <div class="container">
             <div class="row">
@@ -56,11 +87,6 @@
                     <div class="post-wrap">
                         <article class="main-post">
                             <div class="entry-post-title">
-                                <h2 class="post-title">
-                                    <a title="" href="#">
-                                        {{ $news->title }}
-                                    </a>
-                                </h2>
                                 <ul class="entry-meta">
                                     <li class="date">
                                         <a title="" href="#">
@@ -75,11 +101,15 @@
                             </div>
                             <div class="featured-post">
                                 <a href="#">
-                                    <img src="{{ asset('storage/hello.jpg') }}" alt="financial">
+                                    @if ($news->attachments()->count() > 0)
+                                        <img src="{{ asset('storage/'.$news->attachments[0]->path) }}" alt="img">
+                                    @else
+                                    <img src="https://mapandan.gov.ph/wp-content/uploads/2018/03/no_image.jpg" alt="">
+                                    @endif
                                 </a>
                             </div>
                             <div class="entry-content">
-                                <p>{{ $news->content }}</p>
+                                <p>{!! $news->content !!}</p>
                                 <br>
                                 <div class="widget widget-tags">
                                     <div class="reaction-buttons-container">

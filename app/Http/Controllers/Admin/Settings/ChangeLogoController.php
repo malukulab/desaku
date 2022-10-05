@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin\Settings;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Setting;
+use Illuminate\Support\Facades\Storage;
 
 class ChangeLogoController extends Controller
 {
@@ -23,6 +24,10 @@ class ChangeLogoController extends Controller
                     ->file('logo')
                     ->store('logo', ['disk' => 'public']);
         $data = compact('path');
+
+        if (Storage::exists($logo->data['path'])) {
+            Storage::delete($logo->data['path']);
+        }
 
         $logo->update([
             'data' => $data,

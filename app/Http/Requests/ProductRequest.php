@@ -29,10 +29,34 @@ class ProductRequest extends FormRequest
             'price' => 'required|numeric',
             'owner' => 'required',
             'owner_contact' => 'required|numeric',
+            // 'owner_wacontact' => 'numeric',
             'lat' => 'required',
             'long' => 'required',
             'attachments' => 'required|array|min:1',
             'attachments.*' => 'required'
+        ];
+    }
+
+    public function attributes()
+    {
+        return [
+
+            'title' => 'Judul',
+            'content' => 'Deskripsi',
+            'price' => 'Harga',
+            'owner' => 'Pelapak',
+            'owner_contact' => 'Nomor telepon pelapak',
+            'owner_wacontact' => 'Nomor WA pelapak',
+            'attachments' => 'Berkas',
+            'attachments' => 'Berkas',
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'required' => ':attribute Wajib dimasukan',
+            'numeric' => ':attribute harus berupa angka'
         ];
     }
 }

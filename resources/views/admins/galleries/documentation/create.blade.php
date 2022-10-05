@@ -3,6 +3,9 @@
 
 @section('head')
 <link rel="stylesheet" href="https://unpkg.com/filepond/dist/filepond.min.css">
+<script defer src="https://unpkg.com/@yaireo/tagify/dist/tagify.polyfills.min.js"></script>
+<script defer src="https://unpkg.com/@yaireo/tagify"></script>
+<link href="https://unpkg.com/@yaireo/tagify/dist/tagify.css" rel="stylesheet" type="text/css" />
 <style>
 #map {
     width: 100%;
@@ -38,7 +41,7 @@
                 <p class="card-title-desc">
                     Tambahkan dan terbitkan dokumentasi negeri Hila baru Anda
                 </p>
-                <form method="POST" action="{{ route('admin.documentations.store') }}" enctype="multipart/form-data">
+                <form method="POST" action="{{ route('admin.documentation.store') }}" enctype="multipart/form-data">
                     @csrf
                     <div class="row">
                         <div class="col-md-8 offset-md-2">
@@ -71,9 +74,24 @@
 
                             <hr/>
 
+
                             <div class="form-group mb-4">
                                 <label for="input-owner_contact">
-                                    Upload gambar dan video
+                                    Lampirkan link embedded youtube (Opsional)
+                                 </label>
+                                <div>
+                                    <input type="text" id="tagify" name="embedded_youtube" />
+                                    @error('embedded_youtube')
+                                    <span class="text-danger d-inline-block mt-2">
+                                        {{ $message }}
+                                    </span>
+                                    @enderror
+                                </div>
+                            </div>
+
+                            <div class="form-group mb-4">
+                                <label for="input-owner_contact">
+                                    Upload gambar
                                 </label>
                                 <div>
                                     <input type="file" class="attachments" name="attachments[]"/>
@@ -118,7 +136,9 @@
         });
 
 
+        new Tagify(document.getElementById('tagify'));
     });
+
 
     // First register any plugins
     $.fn.filepond.registerPlugin(
@@ -130,7 +150,7 @@
         allowMultiple: true,
         instantUpload: true,
         maxFileSize: '2MB',
-        acceptedFileTypes: ['image/png', 'image/jpg', 'image/jpeg', 'video/mp4'],
+        acceptedFileTypes: ['image/png', 'image/jpg', 'image/jpeg'],
         labelIdle: 'Jatuhkan file atau <strong>klik</strong> untuk memilih.',
         acceptedFileTypes: ['image/jpg', 'image/png', 'video/mp4'],
         fileValidateTypeLabelExpectedTypes: 'File memiliki format yang tidak diperbolehkan',

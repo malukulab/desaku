@@ -2,6 +2,12 @@
 
 @section('head')
 <style>
+
+    .featured-post img {
+        width: 100%;
+        height: 240px;
+        object-fit: cover;
+    }
     .page-title .page-title-heading, .page-title .breadcrumbs {
         float: none !important;
     }
@@ -69,7 +75,11 @@
                         <article class="post">
                             <div class="featured-post">
                                 <a href="{{ route('news.show', $item->slug) }}" title="{{ $item->title }}" class="post-image">
-                                    <img src="{{ asset('storage/hello.jpg') }}" alt="img">
+                                    @if ($item->attachments()->count() > 0)
+                                        <img src="{{ asset('storage/'.$item->attachments[0]->path) }}" alt="img">
+                                    @else
+                                        <img src="https://mapandan.gov.ph/wp-content/uploads/2018/03/no_image.jpg" alt="">
+                                    @endif
                                 </a>
                                 <ul class="post-date">
                                     <li class="month">

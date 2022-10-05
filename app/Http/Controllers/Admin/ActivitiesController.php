@@ -24,6 +24,13 @@ class ActivitiesController extends Controller
 
     public function store(ActivityRequest $request)
     {
+        $embeddedYoutue = collect(json_decode($request->embedded_youtube))
+            ->map(fn ($item) => $item->value)
+            ->implode(',');
+
+        $request->merge([
+            'embedded_youtube' => $embeddedYoutue
+        ]);
         $body = $request->all();
 
         Activity::create($body);
@@ -44,6 +51,13 @@ class ActivitiesController extends Controller
 
     public function update(ActivityRequest $request, $id)
     {
+        $embeddedYoutue = collect(json_decode($request->embedded_youtube))
+            ->map(fn ($item) => $item->value)
+            ->implode(',');
+
+        $request->merge([
+            'embedded_youtube' => $embeddedYoutue
+        ]);
         $body = $request->all();
         $activity = Activity::findOrFail($id);
 

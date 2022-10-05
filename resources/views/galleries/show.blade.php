@@ -76,6 +76,9 @@
                             <div class="featured-post">
                                 <a href="#">
                                     <img src="{{ asset('storage/hello.jpg') }}" alt="financial">
+                                    <br>
+                                    <iframe style="width: 100%; height: 400px;" src="{{ asset('Beranda.pdf') }}">
+                                    </iframe>
                                 </a>
                             </div>
                             <div class="entry-content">

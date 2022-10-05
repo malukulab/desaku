@@ -121,6 +121,21 @@
 
     });
 
+    const initialFiles = {!! json_encode($documentation?->attachments) !!}
+    const files = initialFiles.map(file => {
+        return {
+            source: file.id,
+            options: {
+                type: 'local',
+                file: {
+                    name: file.original_filename,
+                    type: file.content_type,
+                    size: file.size
+                }
+            }
+        }
+    });
+
     // First register any plugins
     $.fn.filepond.registerPlugin(
         FilePondPluginFileValidateSize,
@@ -128,15 +143,36 @@
     );
 
     $('.attachments').filepond({
+        files,
         allowMultiple: true,
         instantUpload: true,
-        maxFileSize: '2MB',
-        acceptedFileTypes: ['image/png', 'image/jpg', 'image/jpeg', 'video/mp4'],
+        maxFileSize: '1MB',
+        maxFiles: 3,
+        acceptedFileTypes: ['image/png', 'image/jpg', 'image/jpeg'],
         labelIdle: 'Jatuhkan file atau <strong>klik</strong> untuk memilih.',
-        acceptedFileTypes: ['image/jpg', 'image/png', 'video/mp4'],
+        acceptedFileTypes: ['image/jpg', 'image/png', 'image/jpeg'],
         fileValidateTypeLabelExpectedTypes: 'File memiliki format yang tidak diperbolehkan',
         server: {
             url: window.location.origin + '/admin/uploaders',
+            revert: (source, load, error) => {
+                const url = window.location.origin + '/admin/uploaders/' + source;
+                const token = $('meta[name="csrf-token"]').attr('content');
+                $.ajax({
+                    url,
+                    method: 'DELETE',
+                    headers: {
+                        'X-CSRF-TOKEN' : token
+                    },
+                    success: () => {
+                        console.log('hello world');
+                    },
+                    error: () => {
+                        console.warn('Error: revert file not successfully.');
+                    }
+                })
+
+                load();
+            },
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }

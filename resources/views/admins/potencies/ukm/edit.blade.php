@@ -39,6 +39,7 @@
                 </p>
                 <form method="POST" action="{{ route('admin.ukm.update', $product->id) }}">
                     @csrf
+                    @method('PUT')
                     <div class="row">
                         <div class="col-md-8 offset-md-2">
                             <div class="form-group mb-4">
@@ -98,11 +99,24 @@
                             </div>
                             <div class="form-group mb-4">
                                 <label for="input-owner_contact">
-                                    Kontak telepon pelapak <i>(WhatsApp)</i>
+                                    Kontak telepon pelapak
                                 </label>
                                 <div>
                                     <input value="{{ $product->owner_contact }}" class="form-control" placeholder="Masukan nomor pelapak" type="number" name="owner_contact" id="input-owner_contact">
                                     @error('owner_contact')
+                                    <span class="text-danger d-inline-block mt-2">
+                                        {{ $message }}
+                                    </span>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="form-group mb-4">
+                                <label for="input-owner_wacontact">
+                                    Kontak WA pelapak <i>(Opsional)</i>
+                                </label>
+                                <div>
+                                    <input value="{{ $product->owner_wacontact }}" class="form-control" placeholder="Masukan nomor WA pelapak" type="number" name="owner_wacontact" id="input-owner_wacontact">
+                                    @error('owner_wacontact')
                                     <span class="text-danger d-inline-block mt-2">
                                         {{ $message }}
                                     </span>
@@ -138,19 +152,10 @@
                                     @enderror
                                 </div>
                             </div>
-                            @foreach($product?->attachments as $attachment)
-                                @if ($attachment->isImage)
-                                    <a href="{{ asset('storage/'. $attachment->path) }}" target="__blank">
-                                        <img class="image" src="{{ asset('storage/'. $attachment->path) }}" alt="{{ $attachment->original_filename }}"/>
-                                    </a>
-                                @else
-                                    Video format
-                                @endif
-                            @endforeach
-
 
                             <div class="form-group mb-5">
                                 <button class="btn btn-primary">Simpan perubahan</button>
+                                <a href="{{ route('admin.tours.index') }}" class="btn btn-warning">Kembali</a>
                             </div>
                         </div>
                     </div>
@@ -180,8 +185,21 @@
             width: '100%',
 
         });
+    });
 
-
+    const initialFiles = {!! json_encode($product?->attachments) !!}
+    const files = initialFiles.map(file => {
+        return {
+            source: file.id,
+            options: {
+                type: 'local',
+                file: {
+                    name: file.original_filename,
+                    type: file.content_type,
+                    size: file.size
+                }
+            }
+        }
     });
 
     $.fn.filepond.registerPlugin(
@@ -190,18 +208,39 @@
     );
 
     $('.attachments').filepond({
+        files,
         allowMultiple: true,
         instantUpload: true,
-        maxFileSize: '2MB',
-        acceptedFileTypes: ['image/png', 'image/jpg', 'image/jpeg', 'video/mp4'],
+        maxFileSize: '1MB',
+        maxFiles: 3,
+        acceptedFileTypes: ['image/png', 'image/jpg', 'image/jpeg'],
         labelIdle: 'Jatuhkan file atau <strong>klik</strong> untuk memilih.',
-        acceptedFileTypes: ['image/jpg', 'image/png', 'video/mp4'],
+        acceptedFileTypes: ['image/jpg', 'image/png', 'image/jpeg'],
         fileValidateTypeLabelExpectedTypes: 'File memiliki format yang tidak diperbolehkan',
         server: {
             url: window.location.origin + '/admin/uploaders',
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
+            },
+            revert: (source, load, error) => {
+                const url = window.location.origin + '/admin/uploaders/' + source;
+                const token = $('meta[name="csrf-token"]').attr('content');
+                $.ajax({
+                    url,
+                    method: 'DELETE',
+                    headers: {
+                        'X-CSRF-TOKEN' : token
+                    },
+                    success: () => {
+                        console.log('hello world');
+                    },
+                    error: () => {
+                        console.warn('Error: revert file not successfully.');
+                    }
+                })
+
+                load();
+            },
         }
     });
 

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use App\Models\Attachment;
+use Illuminate\Support\Facades\Storage;
 
 class UploadersController extends Controller
 {
@@ -22,4 +23,16 @@ class UploadersController extends Controller
 
         return $attachment->id;
     }
+
+    public function destroy($id)
+    {
+        $attachment = Attachment::findOrFail($id);
+
+        if (Storage::exists($attachment->path)) {
+            Storage::delete($attachment->path);
+        }
+
+        $attachment->delete();
+    }
+
 }

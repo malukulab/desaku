@@ -36,11 +36,16 @@
         <div class="card">
             <div class="card-body">
 
-                <h4 class="card-title">Semua Dokumentasi Negeri Hila</h4>
-                <p class="card-title-desc">
-                    Semua dokumentasi negeri Hila yang pernah diterbitkan, dan memiliki {{ $documentations->count() }} dokumentasi
-                </p>
 
+                <div class="d-flex justify-content-between align-items-start">
+                    <div>
+                        <h4 class="card-title">Semua Dokumentasi Negeri Hila</h4>
+                        <p class="card-title-desc">
+                            Semua dokumentasi negeri Hila yang pernah diterbitkan, dan memiliki {{ $documentations->count() }} dokumentasi
+                        </p>
+                    </div>
+                    <a class="btn btn-primary" href="{{ route('admin.documentation.create') }}">Tambahkan dokumentasi</a>
+                </div>
                 <div class="table-responsive">
                     <table id="datatable" class="table table-editable table-nowrap align-middle table-edits">
                         <thead>
@@ -64,10 +69,10 @@
                                 </td>
 
                                 <td style="width: 100px">
-                                    <a href="{{ route('admin.documentations.edit', $documentation->id) }}" class="btn btn-outline-secondary edit" title="Edit">
+                                    <a href="{{ route('admin.documentation.edit', $documentation->id) }}" class="btn btn-outline-secondary edit" title="Edit">
                                         <i class="fas fa-pencil-alt"></i>
                                     </a>
-                                    <form action="{{ route('admin.documentations.destroy', $documentation->id) }}" method="POST" class="d-inline-block">
+                                    <form action="{{ route('admin.documentation.destroy', $documentation->id) }}" method="POST" class="d-inline-block">
                                         @method('DELETE')
                                         @csrf
                                         <button onclick="return confirm('Yakin ingin menghapus ini?')" class="btn btn-outline-danger edit" title="Hapus">

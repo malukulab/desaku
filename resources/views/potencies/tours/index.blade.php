@@ -40,6 +40,17 @@
     .not-found-container p {
         font-size: 1.5rem;
     }
+
+    .more-link a {
+        background-color: #2e363a;
+        border-radius: 3px;
+        font-weight: 600;
+        display: inline-block;
+        line-height: 40px;
+        padding: 0 38px 3px;
+        letter-spacing: 0;
+        color: #ffffff;
+    }
 </style>
 @endsection
 @section('content')
@@ -64,9 +75,9 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="title-section center s1">
-                    <h2>Wisata? Ngak Usah Jauh-Jauh #DiNegeriHilaAja</h2>
+                    <h2>{{ $setting->data['title'] }}</h2>
                     <p class="sub-title-section">
-                        Menyediakan Informasi mengenai Destinasi Wisata di Negeri Hila Kota Ambon
+                        {{ $setting->data['content'] }}
                     </p>
                 </div><!-- /.title-section -->
                 <div class="dividers dividers-imagebox"></div>
@@ -80,20 +91,25 @@
                     <div class="flat-imagebox services-grid item">
                         <div class="flat-imagebox-inner">
                             <div class="flat-imagebox-image">
-                                <img src="{{ asset('storage/hello.jpg') }}" alt="img">
+                                @if ($tour->attachments()->count() > 0)
+                                    <img src="{{ asset('storage/'.$tour->attachments[0]->path) }}" alt="img">
+                                @else
+                                    <img src="https://mapandan.gov.ph/wp-content/uploads/2018/03/no_image.jpg" alt="">
+                                @endif
                             </div>
                             <div class="flat-imagebox-header">
                                 <h3 class="flat-imagebox-title">
                                     <a href="{{ route('potencies.tours.show', $tour->slug) }}">
-                                        {{ $tour->title }}
+                                        {!! $tour->title !!}
                                     </a>
                                 </h3>
                             </div>
                             <div class="flat-imagebox-content">
-                                <div class="flat-imagebox-desc">{{ str($tour->content)->limit(200) }}</div>
-                                <div class="flat-imagebox-button">
-                                    <a href="{{ route('potencies.tours.show', $tour->slug) }}">Selengkapnya</a>
+                                <div class="flat-imagebox-desc">{!! str($tour->content)->limit(200) !!}</div>
+                                <div class="more-link">
+                                    <a style="margin-top: .8rem;" href="{{ route('potencies.tours.show', $tour->slug) }}">Selengkapnya</a>
                                 </div>
+
                             </div>
                         </div>
                     </div> <!-- /.item .flat-imagebox -->

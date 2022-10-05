@@ -21,4 +21,13 @@ class Culture extends Model
             $news->slug = $slug;
         });
     }
+
+    public function attachments()
+    {
+        return $this->morphToMany(
+            Attachment::class,
+            'record',
+            'model_has_attachments'
+        );
+    }
 }

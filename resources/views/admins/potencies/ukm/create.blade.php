@@ -98,10 +98,30 @@
                             </div>
                             <div class="form-group mb-4">
                                 <label for="input-owner_contact">
-                                    Kontak telepon pelapak <i>(WhatsApp)</i>
+                                    Kontak telepon pelapak
                                 </label>
                                 <div>
-                                    <input value="{{ old('owner_contact') }}" class="form-control" placeholder="Masukan nomor pelapak" type="number" name="owner_contact" id="input-owner_contact">
+                                    <div class="input-group">
+                                        <div class="input-group-text">+62</div>
+
+                                        <input value="{{ old('owner_contact') }}" class="form-control" placeholder="Masukan nomor pelapak" type="number" name="owner_contact" id="input-owner_contact">
+                                      </div>
+                                    @error('owner_contact')
+                                    <span class="text-danger d-inline-block mt-2">
+                                        {{ $message }}
+                                    </span>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="form-group mb-4">
+                                <label for="input-owner_contact">
+                                    Kontak WhatsApp pelapak <i>(Opsional)</i>
+                                </label>
+                                <div>
+                                    <div class="input-group">
+                                        <div class="input-group-text">+62</div>
+                                        <input value="{{ old('owner_wacontact') }}" class="form-control" placeholder="Masukan nomor WA pelapak" type="number" name="owner_wacontact" id="input-owner_contact">
+                                      </div>
                                     @error('owner_contact')
                                     <span class="text-danger d-inline-block mt-2">
                                         {{ $message }}
@@ -141,7 +161,8 @@
 
 
                             <div class="form-group mb-5">
-                                <button class="btn btn-primary">Tambahkan</button>
+                                <button class="btn btn-primary">Simpan</button>
+                                <a href="{{ route('admin.tours.index') }}" class="btn btn-warning">Kembali</a>
                             </div>
                         </div>
                     </div>

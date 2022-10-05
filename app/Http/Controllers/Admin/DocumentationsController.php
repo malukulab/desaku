@@ -24,6 +24,14 @@ class DocumentationsController extends Controller
 
     public function store(DocumentationRequest $request)
     {
+        $embeddedYoutue = collect(json_decode($request->embedded_youtube))
+            ->map(fn ($item) => $item->value)
+            ->implode(',');
+
+        $request->merge([
+            'embedded_youtube' => $embeddedYoutue
+        ]);
+
         $body = $request->all();
 
         Documentation::create($body);
@@ -44,7 +52,15 @@ class DocumentationsController extends Controller
 
     public function update(DocumentationRequest $request, $id)
     {
+        $embeddedYoutue = collect(json_decode($request->embedded_youtube))
+            ->map(fn ($item) => $item->value)
+            ->implode(',');
+
+        $request->merge([
+            'embedded_youtube' => $embeddedYoutue
+        ]);
         $body = $request->all();
+
         $documentation = Documentation::findOrFail($id);
 
         $documentation->update($body);

@@ -265,22 +265,23 @@
                     nav: true,
                     dots: $('.flat-carousel').data('dots'),
                     autoplay: $('.flat-carousel').data('auto'),
-                     margin: 30,
+                    margin: 30,
                     responsive:{
                         0:{
-                            items: 1
+                            items: 1,
+                            nav: true
                         },
                         320: {
-                            items: 2
+                            items: 1
                         },
                         480:{
-                            items: 3
+                            items: 1
                         },
                         767:{
-                            items: 3
+                            items: 1
                         },
                         991:{
-                            items: 4
+                            items: 1
                         },
                         1200: {
                             items: $('.flat-carousel').data('item')
@@ -561,7 +562,7 @@
     var flexslider_BlockQuote = function() {
         $(window).load(function() {
             $('.flat-block-quote-slider').flexslider({
-                animation: "slide",
+                animation: "fade",
                 controlNav: true,
                 directionNav: false,
                 manualControls: ".flex-control-nav li"
@@ -722,7 +723,7 @@
       var retina = window.devicePixelRatio > 1 ? true : false;
 
         if(retina) {
-            $('.logo').find('img').attr( {src:'./images/logo@2x.png',width:'161',height:'46'} );
+            $('.logo').find('img').attr( {width:'161',height:'46'} );
         }
     };
 

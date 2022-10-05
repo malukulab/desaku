@@ -5,9 +5,13 @@
 @section('content')
     <div class="row">
         <div class="col-md-6">
+
             <div class="card">
                 <div class="card-body">
-                    <h4 class="card-title mb-4">Status Pendididkan Penduduk</h4>
+                    <div class="d-flex justify-content-between align-items-start">
+                        <h4 class="card-title mb-4">Status Pendididkan Penduduk</h4>
+                        <a href="#" class="btn btn-secondary">Tambahkan data pendidikan</a>
+                    </div>
                     <div class="row text-center mt-4">
                         <div class="col-6">
                             <h5 class="mb-0 font-size-20 text-truncate">9595</h5>
@@ -26,7 +30,10 @@
         <div class="col-md-6">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="card-title mb-4">Status Pekerjaan Masyarakat</h4>
+                    <div class="d-flex justify-content-between align-items-start">
+                        <h4 class="card-title mb-4">Status Pekerjaan Masyarakat</h4>
+                        <a href="#" class="btn btn-secondary">Tambahkan data pekerjaan</a>
+                    </div>
                     <div class="row text-center mt-4">
                         <div class="col-6">
                             <h5 class="mb-0 font-size-20 text-truncate">9595</h5>
@@ -47,7 +54,10 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="card-title mb-4">Status Jenis Kelamin dan Usia Penduduk</h4>
+                    <div class="d-flex justify-content-between align-items-start">
+                        <h4 class="card-title mb-4">Status Jenis Kelamin dan Usia Penduduk</h4>
+                        <a href="#" class="btn btn-secondary">Tambahkan data jenis kelamin & usia penduduk</a>
+                    </div>
                     <div class="row text-center mt-4">
                         <div class="col-6">
                             <h5 class="mb-0 font-size-20 text-truncate">86541</h5>

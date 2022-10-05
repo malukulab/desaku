@@ -35,11 +35,21 @@
         <div class="card">
             <div class="card-body">
 
-                <h4 class="card-title">Semua Produk Unggulan</h4>
-                <p class="card-title-desc">
-                    Semua informasi produk unggulan yang pernah diterbitkan, dan memiliki {{ $products->count() }} produk.
-                </p>
 
+                <div class="d-flex justify-content-between align-items-start">
+                    <div>
+                        <h4 class="card-title">Semua Produk Unggulan</h4>
+                        <p class="card-title-desc">
+                            Semua informasi produk unggulan yang pernah diterbitkan, dan memiliki {{ $products->count() }} produk.
+                        </p>
+                    </div>
+                    <div>
+                        <a class="btn btn-primary" href="{{ route('admin.settings.products.index') }}">
+                            <i class="mdi mdi-cog"></i>
+                        </a>
+                        <a class="btn btn-primary" href="{{ route('admin.products.create') }}">Tambahkan produk</a>
+                    </div>
+                </div>
                 <div class="table-responsive">
                     <table id="datatable" class="table table-editable table-nowrap align-middle table-edits">
                         <thead>

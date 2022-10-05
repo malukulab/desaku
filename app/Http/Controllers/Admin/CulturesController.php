@@ -26,7 +26,10 @@ class CulturesController extends Controller
     {
         $body = $request->all();
 
-        Culture::create($body);
+        $culture = Culture::create($body);
+
+        $culture->attachments()
+            ->attach($request->attachments);
 
         return redirect()
             ->route('admin.cultures.index')
@@ -48,6 +51,10 @@ class CulturesController extends Controller
         $culture = Culture::findOrFail($id);
 
         $culture->update($body);
+
+
+        $culture->attachments()
+            ->sync($request->attachments);
 
         return redirect()
             ->route('admin.cultures.index')

@@ -9,6 +9,7 @@ use Illuminate\Support\Str;
 use App\Models\News;
 use App\Models\Category;
 use App\Models\Attachment;
+use Illuminate\Support\Facades\Storage;
 
 class NewsController extends Controller
 {
@@ -37,7 +38,7 @@ class NewsController extends Controller
 
         $news->categories()->attach($request->categories);
 
-        $file = $request->file('file');
+        $file = $request->file('cover');
         $filename = $file->store('news', [
             'disk' => 'public'
         ]);
@@ -67,10 +68,17 @@ class NewsController extends Controller
         $news->update($body);
         $news->categories()->sync($request->categories);
 
-        $file = $request->file('file');
+        $file = $request->file('cover');
         $filename = $file->store('news', [
             'disk' => 'public'
         ]);
+
+        if ($news->attachments->count() > 0
+            && Storage::exists($news->attachments[0]->path)
+        ) {
+            Storage::delete($news->attachments[0]->path);
+        }
+
 
         $attachment = Attachment::fromFile($file, $filename);
 
@@ -86,6 +94,13 @@ class NewsController extends Controller
     public function destroy($id)
     {
         $news = News::findOrFail($id);
+
+        if ($news->attachments->count() > 0
+            && Storage::exists($news->attachments[0]->path)
+        ) {
+            Storage::delete($news->attachments[0]->path);
+        }
+
         $news->delete();
 
         return redirect()

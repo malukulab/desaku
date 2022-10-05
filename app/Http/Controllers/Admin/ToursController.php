@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 use App\Models\Tour;
 use App\Http\Requests\TourRequest;
 
@@ -21,10 +22,22 @@ class ToursController extends Controller
         return view('admins.potencies.tours.create');
     }
 
-    public function store(TourRequest $request)
+    public function store(Request $request)
     {
+        $embeddedYoutue = collect(json_decode($request->embedded_youtube))
+            ->map(fn ($item) => $item->value)
+            ->implode(',');
+
+        $request->merge([
+            'embedded_youtube' => $embeddedYoutue
+        ]);
+
         $body = $request->all();
-        Tour::create($body);
+        $tour = Tour::create($body);
+
+        $tour->attachments()->attach(
+            $request->attachments
+        );
 
         return redirect()
             ->route('admin.tours.index')
@@ -38,17 +51,29 @@ class ToursController extends Controller
     {
         $tour = Tour::findOrFail($id);
 
+
         return view('admins.potencies.tours.edit', compact('tour'));
     }
 
 
     public function update(TourRequest $request, string $id)
     {
+        $embeddedYoutue = collect(json_decode($request->embedded_youtube))
+            ->map(fn ($item) => $item->value)
+            ->implode(',');
+
+        $request->merge([
+            'embedded_youtube' => $embeddedYoutue
+        ]);
         $body = $request->all();
 
         $tour = Tour::findOrFail($id);
 
         $tour->update($body);
+
+        $tour->attachments()->sync(
+            $request->attachments
+        );
 
         return redirect()
             ->route('admin.tours.index')

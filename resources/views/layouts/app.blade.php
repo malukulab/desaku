@@ -47,6 +47,74 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('vendor/finance-accounting/css/animate.css') }}">
 
     @yield('head')
+    <style>
+        .flat-infomation li::before {
+            display: none;
+            content: '';
+        }
+        .flat-infomation li i {
+            display: inline-block;
+            margin-right: .5rem;
+            font-size: 1rem;
+        }
+
+        .logo-app img {
+            position: relative;
+            top: 1.25rem;
+        }
+        @media only screen and (max-width: 600px) {
+            .logo-app img {
+                position: relative;
+                top: 1.25rem;
+                width: 140px;
+            }
+
+        }
+
+        #mainnav-mobi .sub-menu-right {
+            width: 100%;
+            left: 0 !important;
+        }
+        .infomation-footer {
+            display: flex;
+            padding: 0;
+            margin: 0;
+            flex-direction: column;
+        }
+
+        #mainnav .sub-menu.sub-menu-right {
+            left: 0;
+            top: 0 !important;
+            transition: 300ms ease;
+            opacity: 0;
+            visibility: hidden;
+            z-index: 0 !important;
+            position: absolute;
+            width: 250px;
+            background-color: #1d2738;
+        }
+
+        .sub-menu li:hover .sub-menu.sub-menu-right {
+            opacity: 1 !important;
+            left: 250px !important;
+            visibility: visible !important;
+        }
+
+        .sub-menu-right li a:hover {
+            background-color: #18ba60;
+        }
+        .sub-menu-right li a {
+            display: block;
+            padding: 0px 0px 0px 15px;
+            line-height: 45px;
+            border-bottom: 1px solid #2d374a;
+            color: #ffffff;
+        }
+        #mainnav .menu > li > .sub-menu > li > a {
+            line-height: 25px;
+            padding: .7rem;
+        }
+    </style>
 </head>
 	<body>
 
@@ -63,26 +131,29 @@
 				<div class="row">
 					<div class="col-md-12">
 						<ul class="flat-infomation">
-							<li class="phone">Hubungi kami: <a href="+61383766284" title="phone">+61 3 8376 6284</a></li>
-							<li class="email">Alamat email: <a href="mailto:support24-7@gmail.com" title="email">support24-7@gmail.com</a></li>
+							<li>
+                                <i class="fa fa-volume-up"></i>
+                                <span style="display: inline-block;">
+                                    <marquee>
+                                        {{ $text->data['content'] }}
+                                    </marquee>
+                                </span>
+                            </li>
 						</ul><!-- /flat-infomation -->
-						<div class="flat-questions">
-							<a href="#" title="" class="questions">Kamu memiliki pertanyaan?</a>
-						</div><!-- /.flat-questions -->
+
 						<div class="clearfix"></div><!-- /.clearfix -->
 					</div>
 				</div>
 			</div>
 		</div><!-- /.top -->
-
 		<header id="header" class="header bg-color">
 			<div class="container">
 				<div class="row">
 					<div class="header-wrap">
 						<div class="col-md-2">
-							<div id="logo" class="logo">
+							<div class="logo" id="logo">
 								<a href="#" title="">
-									<img src="images/logo-blog.png" alt="Logo"/>
+									<img src="{{ asset('storage/'.$logo->data['path']) }}" alt="Logo"/>
 								</a>
 							</div><!-- /#logo -->
 						</div><!-- /.col-md-2 -->
@@ -92,9 +163,9 @@
     		                        <a href="#"><i class="fa fa-search"></i></a>
     		                    </div>
                                 <div class="top-search">
-                                    <form action="#" id="searchform-all" method="get">
+                                    <form action="{{ route('news.index') }}" id="searchform-all" method="get">
                                         <div>
-                                            <input autocomplete="off" type="text" id="s" class="sss" placeholder="Telusuri berita">
+                                            <input autocomplete="off" type="text" name="keyword" id="s" class="sss" placeholder="Telusuri berita">
                                             <input type="submit" value="" id="searchsubmit">
                                         </div>
                                     </form>
@@ -107,29 +178,39 @@
 								<nav id="mainnav" class="mainnav">
 									<ul class="menu">
 										<li>
-											<a href="#" title="Beranda">Beranda</a>
+											<a href="{{ route('index') }}" title="Beranda">Beranda</a>
 										</li>
 
 										<li>
 											<a href="#" title="Tentang desa">Tentang Desa  <i class="fa fa-angle-down" aria-hidden="true"></i></a>
 											<ul class="sub-menu">
-												<li><a href="#" title="">Informasi Sejarah</a></li>
-                                                <li><a href="#" title="">Profil Aparatur Desa</a></li>
-                                                <li><a href="#" title="">Struktur Organisasi</a></li>
-                                                <li><a href="#" title="">Seni dan Kebudayaan</a></li>
+												<li><a href="{{ route('history.index') }}" title="">Informasi Sejarah</a></li>
+                                                <li><a href="{{ route('apparatus.index') }}" title="">Profil Aparatur Desa</a></li>
+                                                <li><a href="{{ route('organization.index') }}" title="">Struktur Organisasi</a></li>
+                                                <li><a href="{{ route('cultures.index') }}" title="">Seni dan Kebudayaan</a></li>
 											</ul><!-- /.sub-menu -->
 										</li>
                                         <li>
 											<a href="{{ route('news.index') }}" title="Berita">Berita</a>
 										</li>
 										<li>
-											<a href="#" title="Demografi">Informasi Demografi  <i class="fa fa-angle-down" aria-hidden="true"></i></a>
+											<a href="#" title="Demografi">Data & Statistik  <i class="fa fa-angle-down" aria-hidden="true"></i></a>
 											<ul class="sub-menu">
-												<li><a href="#" title="">Trantib dan Bencana</a></li>
+												{{-- <li>
+                                                    <a href="#" title="Statistik Monografi Desa">Statistik Monografi Desa  <i class="fa fa-angle-right" aria-hidden="true"></i></a>
+                                                    <ul class="sub-menu sub-menu-right">
+                                                        <li><a href="{{ route('potencies.products.index') }}" title="">Produk Unggulan</a></li>
+                                                        <li><a href="{{ route('potencies.tours.index') }}" title="">Pusat Wisata</a></li>
+                                                        <li><a href="{{ route('potencies.ukm.index') }}" title="">UKM Desa</a></li>
+                                                    </ul><!-- /.sub-menu -->
+                                                </li> --}}
+                                                @foreach ($listOfStatistics as $statistic)
+                                                    <li><a href="{{ route('statistic.show', $statistic->slug) }}">Data {{ str($statistic->title)->title() }}</a></li>
+                                                @endforeach
 											</ul><!-- /.sub-menu -->
 										</li>
 										<li>
-											<a href="blog.html" title="Potensi">Potensi  <i class="fa fa-angle-down" aria-hidden="true"></i></a>
+											<a href="#" title="Potensi">Potensi  <i class="fa fa-angle-down" aria-hidden="true"></i></a>
 											<ul class="sub-menu">
 												<li><a href="{{ route('potencies.products.index') }}" title="">Produk Unggulan</a></li>
 												<li><a href="{{ route('potencies.tours.index') }}" title="">Pusat Wisata</a></li>
@@ -139,7 +220,9 @@
 										<li>
 											<a href="#" title="">Galeri <i class="fa fa-angle-down" aria-hidden="true"></i></a>
                                             <ul class="sub-menu">
-												<li><a href="{{ route('galleries.index') }}" title="">Dokumentasi dan Kegiatan</a></li>
+												<li><a href="{{ route('gelleries.documentation.index') }}" title="">Dokumentasi</a></li>
+                                                <li><a href="{{ route('gelleries.activities.index') }}" title="">Kegiatan</a></li>
+                                                <li><a href="{{ route('gelleries.file.index') }}" title="">Kumpulan Berkas</a></li>
 
 											</ul><!-- /.sub-menu -->
 										</li>
@@ -340,7 +423,7 @@
             <div class="footer-blockquote">
                 <div class="container">
                     <div class="flat-row flat-client">
-                        <ul class="flat-carousel" data-item="1" data-nav="false" data-dots="false" data-auto="true">
+                        <ul class="flat-carousel" data-item="1" data-nav="true" data-dots="false" data-auto="false">
                             <li class="item">
                                 <h3 class="title">Visi</h3>
                                 <figure>
@@ -436,7 +519,7 @@
 
     <script type="text/javascript" src="{{ asset('vendor/finance-accounting/js/jquery.cookie.js') }}"></script>
     <script type="text/javascript" src="{{ asset('vendor/finance-accounting/js/jquery-validate.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('vendor/finance-accounting/js/main.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('vendor/finance-accounting/js/main.js?id=2') }}"></script>
 
 
     <!-- Revolution Slider -->

@@ -89,6 +89,7 @@
                             <div class="wrap-iconbox">
                                 <div class="featured-post">
                                     <img src="{{ asset('storage/hello.jpg') }}" alt="img">
+
                                 </div>
                                 <div class="title-post">
                                     <a href="#">{{ $gallery->title }}</a>

@@ -30,6 +30,19 @@
     .not-found-container p {
         font-size: 1.5rem;
     }
+    .more-link {
+        margin-top: .9rem;
+    }
+    .more-link a {
+        background-color: #2e363a;
+        border-radius: 3px;
+        font-weight: 600;
+        display: inline-block;
+        line-height: 40px;
+        padding: 0 38px 3px;
+        letter-spacing: 0;
+        color: #ffffff;
+    }
 
 </style>
 @endsection
@@ -37,7 +50,7 @@
 <div class="page-title">
     <div class="container">
         <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-12">
                 <div class="page-title-heading">
                     <h1 class="h1-title">UKM (Usaha Kecil dan Menengah) di Negeri Hila</h1>
                 </div><!-- /.page-title-heading -->
@@ -57,15 +70,14 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="title-section center s1">
-                    <h2>Saatnya UKM Naik Kelas</h2>
+                    <h2>{{ $setting->data['title'] }}</h2>
                     <p class="sub-title-section">
-                        Untuk mempermudah UKM mengakses pengetahuan bisnis, kami menyediakan kamus bisnis, ratusan artikel ulasan kasus-kasus bisnis, dan berita-berita penting untuk memperkaya sudut pandang dan wawasan pelaku usaha yang ingin naik kelas.
+                        {{ $setting->data['content'] }}
                     </p>
                 </div><!-- /.title-section -->
                 <div class="dividers dividers-imagebox"></div>
             </div>
         </div><!-- /.row -->
-
         <div class="row">
             <div class="col-md-12">
                 <div class="wrap-imagebox-grid">
@@ -73,7 +85,11 @@
                         <div class="flat-imagebox services-grid item">
                             <div class="flat-imagebox-inner">
                                 <div class="flat-imagebox-image">
-                                    <img src="{{ asset('storage/hello.jpg') }}" alt="img">
+                                @if ($product->attachments()->count() > 0)
+                                    <img src="{{ asset('storage/'.$product->attachments[0]->path) }}" alt="img">
+                                @else
+                                    <img src="https://mapandan.gov.ph/wp-content/uploads/2018/03/no_image.jpg" alt="">
+                                @endif
                                 </div>
                                 <div class="flat-imagebox-header">
                                     <h3 class="flat-imagebox-title">
@@ -84,9 +100,9 @@
                                 </div>
                                 <div class="flat-imagebox-content">
                                     <div class="flat-imagebox-desc">
-                                        {{ str($product->content)->limit(100) }}
+                                        {!! str($product->content)->limit(100) !!}
                                     </div>
-                                    <div class="flat-imagebox-button">
+                                    <div class="more-link">
                                         <a href="{{ route('potencies.ukm.show', $product->slug) }}">Selengkapnya</a>
                                     </div>
                                 </div>

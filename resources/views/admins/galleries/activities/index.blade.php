@@ -36,11 +36,16 @@
         <div class="card">
             <div class="card-body">
 
-                <h4 class="card-title">Semua Kegiatan Negeri Hila</h4>
-                <p class="card-title-desc">
-                    Semua informasi kegiatan negeri Hila yang pernah diterbitkan, dan memiliki {{ $activities->count() }} budaya.
-                </p>
 
+                <div class="d-flex justify-content-between align-items-start">
+                    <div>
+                        <h4 class="card-title">Semua Kegiatan Negeri Hila</h4>
+                        <p class="card-title-desc">
+                            Semua informasi kegiatan negeri Hila yang pernah diterbitkan, dan memiliki {{ $activities->count() }} budaya.
+                        </p>
+                    </div>
+                    <a class="btn btn-primary" href="{{ route('admin.activities.create') }}">Tambahkan kegiatan</a>
+                </div>
                 <div class="table-responsive">
                     <table id="datatable" class="table table-editable table-nowrap align-middle table-edits">
                         <thead>

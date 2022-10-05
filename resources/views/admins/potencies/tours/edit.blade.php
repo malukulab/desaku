@@ -3,6 +3,9 @@
 
 @section('head')
 <link rel="stylesheet" href="https://unpkg.com/filepond/dist/filepond.min.css">
+<script defer src="https://unpkg.com/@yaireo/tagify/dist/tagify.polyfills.min.js"></script>
+<script defer src="https://unpkg.com/@yaireo/tagify"></script>
+<link href="https://unpkg.com/@yaireo/tagify/dist/tagify.css" rel="stylesheet" type="text/css" />
 <style>
 #map {
     width: 100%;
@@ -70,6 +73,33 @@
                                 </div>
                             </div>
 
+                            <div class="form-group mb-4">
+                                <label for="editor">
+                                    Nomor telepon pengelolah wisata
+                                </label>
+                                <div>
+                                    <input value="{{ $tour->owner_contact }}" type="number" class="form-control" name="owner_contact">
+                                    @error('owner_contact')
+                                    <span class="text-danger d-inline-block mt-2">
+                                        {{ $message }}
+                                    </span>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="form-group mb-4">
+                                <label for="editor">
+                                    Nomor WA pengelolah wisata (Opsional)
+                                </label>
+                                <div>
+                                    <input value="{{ $tour->owner_wacontact }}" type="number" class="form-control" name="owner_wacontact">
+                                    @error('owner_wacontact')
+                                    <span class="text-danger d-inline-block mt-2">
+                                        {{ $message }}
+                                    </span>
+                                    @enderror
+                                </div>
+                            </div>
+
                             <hr/>
                             <div class="form-group mb-4">
                                 <label for="input-owner_contact">
@@ -89,6 +119,20 @@
 
                             <div class="form-group mb-4">
                                 <label for="input-owner_contact">
+                                    Lampirkan link embedded youtube (Opsional)
+                                 </label>
+                                <div>
+                                    <input type="text" value="{{ $tour->embedded_youtube }}" id="tagify" name="embedded_youtube" />
+                                    @error('embedded_youtube')
+                                    <span class="text-danger d-inline-block mt-2">
+                                        {{ $message }}
+                                    </span>
+                                    @enderror
+                                </div>
+                            </div>
+
+                            <div class="form-group mb-4">
+                                <label for="input-owner_contact">
                                     Upload berkas
                                 </label>
                                 <div>
@@ -100,10 +144,13 @@
                                     @enderror
                                 </div>
                             </div>
+                            <div>
 
+                            </div>
 
                             <div class="form-group mb-5">
                                 <button class="btn btn-primary">Simpan perubahan</button>
+                                <button type="reset" class="btn btn-warning">Batal</button>
                             </div>
                         </div>
                     </div>
@@ -135,7 +182,24 @@
 
         });
 
+        new Tagify(
+            document.getElementById('tagify')
+        );
+    });
 
+    const initialFiles = {!! json_encode($tour?->attachments) !!}
+    const files = initialFiles.map(file => {
+        return {
+            source: file.id,
+            options: {
+                type: 'local',
+                file: {
+                    name: file.original_filename,
+                    type: file.content_type,
+                    size: file.size
+                }
+            }
+        }
     });
 
     // First register any plugins
@@ -145,15 +209,36 @@
     );
 
     $('.attachments').filepond({
+        files,
         allowMultiple: true,
         instantUpload: true,
-        maxFileSize: '2MB',
-        acceptedFileTypes: ['image/png', 'image/jpg', 'image/jpeg', 'video/mp4'],
+        maxFileSize: '1MB',
+        maxFiles: 3,
+        acceptedFileTypes: ['image/png', 'image/jpg', 'image/jpeg'],
         labelIdle: 'Jatuhkan file atau <strong>klik</strong> untuk memilih.',
-        acceptedFileTypes: ['image/jpg', 'image/png', 'video/mp4'],
+        acceptedFileTypes: ['image/jpg', 'image/png', 'image/jpeg'],
         fileValidateTypeLabelExpectedTypes: 'File memiliki format yang tidak diperbolehkan',
         server: {
             url: window.location.origin + '/admin/uploaders',
+            revert: (source, load, error) => {
+                const url = window.location.origin + '/admin/uploaders/' + source;
+                const token = $('meta[name="csrf-token"]').attr('content');
+                $.ajax({
+                    url,
+                    method: 'DELETE',
+                    headers: {
+                        'X-CSRF-TOKEN' : token
+                    },
+                    success: () => {
+                        console.log('hello world');
+                    },
+                    error: () => {
+                        console.warn('Error: revert file not successfully.');
+                    }
+                })
+
+                load();
+            },
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }

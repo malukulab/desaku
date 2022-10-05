@@ -20,6 +20,10 @@ class ProductController extends Controller
         'edit' => 'admins.potencies.products.edit',
     ];
 
+    protected array $routes = [
+        'index' => 'admin.products.index',
+    ];
+
     public function index()
     {
         $products = $this->model::latest()->get();
@@ -46,7 +50,7 @@ class ProductController extends Controller
             );
 
         return redirect()
-            ->back()
+            ->route($this->routes['index'])
             ->with('message', 'Berhasil menambahkan produk');
     }
 
@@ -67,12 +71,12 @@ class ProductController extends Controller
         $product->update($body);
         $product
             ->attachments()
-            ->attach(
+            ->sync(
                 $request->attachments
             );
 
         return redirect()
-            ->back()
+            ->route($this->routes['index'])
             ->with('message', 'Berhasil menggubah produk');
     }
 
@@ -81,6 +85,7 @@ class ProductController extends Controller
         $product = $this->model::findOrFail($id);
 
         $product->delete();
+
         return redirect()
             ->back()
             ->with('message', 'Berhasil menghapus produk');

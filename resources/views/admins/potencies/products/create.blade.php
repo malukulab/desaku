@@ -8,6 +8,10 @@
     width: 100%;
     border-radius: 5px;
     height: 400px;
+    margin-bottom: .7rem;
+}
+.lat-lng-text {
+    display: none;
 }
 </style>
 @endsection
@@ -98,11 +102,32 @@
                             </div>
                             <div class="form-group mb-4">
                                 <label for="input-owner_contact">
-                                    Kontak telepon pelapak <i>(WhatsApp)</i>
+                                    Kontak telepon pelapak
                                 </label>
                                 <div>
-                                    <input value="{{ old('owner_contact') }}" class="form-control" placeholder="Masukan nomor pelapak" type="number" name="owner_contact" id="input-owner_contact">
+                                    <div class="input-group">
+                                        <div class="input-group-text">+62</div>
+
+                                        <input value="{{ old('owner_contact') }}" class="form-control" placeholder="Masukan nomor pelapak" type="number" name="owner_contact" id="input-owner_contact">
+                                      </div>
                                     @error('owner_contact')
+                                    <span class="text-danger d-inline-block mt-2">
+                                        {{ $message }}
+                                    </span>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="form-group mb-4">
+                                <label for="input-owner_wacontact">
+                                    Kontak WA pelapak
+                                </label>
+                                <div>
+                                    <div class="input-group">
+                                        <div class="input-group-text">+62</div>
+
+                                        <input value="{{ old('owner_wacontact') }}" class="form-control" placeholder="Masukan nomor pelapak" type="number" name="owner_wacontact" id="input-owner_wacontact">
+                                      </div>
+                                    @error('owner_wacontact')
                                     <span class="text-danger d-inline-block mt-2">
                                         {{ $message }}
                                     </span>
@@ -114,14 +139,18 @@
                                     Pilih lokasi pelapak
                                 </label>
                                 <div>
-                                    <input type="hidden" name="lat" id="input-lat" readonly required>
-                                    <input type="hidden" name="long" id="input-long" readonly required>
+
                                     <div id="map"></div>
                                     @if ($errors->has('lat') && $errors->has('long'))
                                     <span class="text-danger d-inline-block mt-2">
                                         Lokasi pelapak wajib dimasukan
                                     </span>
+                                    <br/>
                                     @endif
+
+                                    <input type="hidden" class="form-control" name="lat" id="input-lat" readonly required>
+                                    <input type="hidden" class="form-control" name="long" id="input-long" readonly required>
+                                    <p class="lat-lng-text">Keterangan: Lattitude <span id="lat-text"></span>, Longotude <span id="lng-text"></span> </p>
                                 </div>
                             </div>
                             <hr/>
@@ -141,7 +170,8 @@
 
 
                             <div class="form-group mb-5">
-                                <button class="btn btn-primary">Tambahkan</button>
+                                <button class="btn btn-primary">Simpan</button>
+                                <a href="{{ route('admin.products.index') }}" class="btn btn-warning">Kembali</a>
                             </div>
                         </div>
                     </div>
@@ -222,6 +252,11 @@
             const {lat, lng} = event.latLng
             $('input#input-lat').val(lat);
             $('input#input-long').val(lng);
+
+            $('span#lat-text').text(lat);
+            $('span#lng-text').text(lng);
+            $('.lat-lng-text').show();
+
 
             infowindow.open({ map, anchor: marker });
             marker.setPosition(event.latLng);

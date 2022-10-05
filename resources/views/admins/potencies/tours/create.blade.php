@@ -3,6 +3,9 @@
 
 @section('head')
 <link rel="stylesheet" href="https://unpkg.com/filepond/dist/filepond.min.css">
+<script defer src="https://unpkg.com/@yaireo/tagify/dist/tagify.polyfills.min.js"></script>
+<script defer src="https://unpkg.com/@yaireo/tagify"></script>
+<link href="https://unpkg.com/@yaireo/tagify/dist/tagify.css" rel="stylesheet" type="text/css" />
 <style>
 #map {
     width: 100%;
@@ -68,7 +71,32 @@
                                     @enderror
                                 </div>
                             </div>
-
+                            <div class="form-group mb-4">
+                                <label for="editor">
+                                    Nomor telepon pengelolah wisata
+                                </label>
+                                <div>
+                                    <input value="{{ old('owner_contact') }}" type="number" class="form-control" name="owner_contact">
+                                    @error('owner_contact')
+                                    <span class="text-danger d-inline-block mt-2">
+                                        {{ $message }}
+                                    </span>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="form-group mb-4">
+                                <label for="editor">
+                                    Nomor WA pengelolah wisata (Opsional)
+                                </label>
+                                <div>
+                                    <input value="{{ old('owner_wacontact') }}" type="number" class="form-control" name="owner_wacontact">
+                                    @error('owner_wacontact')
+                                    <span class="text-danger d-inline-block mt-2">
+                                        {{ $message }}
+                                    </span>
+                                    @enderror
+                                </div>
+                            </div>
                             <hr/>
                             <div class="form-group mb-4">
                                 <label for="input-owner_contact">
@@ -88,6 +116,20 @@
 
                             <div class="form-group mb-4">
                                 <label for="input-owner_contact">
+                                    Lampirkan link embedded youtube (Opsional)
+                                 </label>
+                                <div>
+                                    <input type="text" id="tagify" name="embedded_youtube" />
+                                    @error('embedded_youtube')
+                                    <span class="text-danger d-inline-block mt-2">
+                                        {{ $message }}
+                                    </span>
+                                    @enderror
+                                </div>
+                            </div>
+
+                            <div class="form-group mb-4">
+                                <label for="input-owner_contact">
                                     Upload berkas
                                 </label>
                                 <div>
@@ -102,7 +144,8 @@
 
 
                             <div class="form-group mb-5">
-                                <button class="btn btn-primary">Tambahkan</button>
+                                <button class="btn btn-primary">Simpan</button>
+                                <button type="reset" class="btn btn-warning">Batal</button>
                             </div>
                         </div>
                     </div>
@@ -133,6 +176,10 @@
             width: '100%',
 
         });
+
+        new Tagify(
+            document.getElementById('tagify')
+        );
 
 
     });

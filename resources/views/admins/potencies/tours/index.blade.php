@@ -36,10 +36,21 @@
         <div class="card">
             <div class="card-body">
 
-                <h4 class="card-title">Semua Destinasi Wisata</h4>
-                <p class="card-title-desc">
-                    Semua informasi destinasi wisata yang pernah diterbitkan, dan memiliki {{ $tours->count() }} lokasi wisata.
-                </p>
+
+                <div class="d-flex justify-content-between align-items-start">
+                    <div>
+                        <h4 class="card-title">Semua Destinasi Wisata</h4>
+                        <p class="card-title-desc">
+                            Semua informasi destinasi wisata yang pernah diterbitkan, dan memiliki {{ $tours->count() }} lokasi wisata.
+                        </p>
+                    </div>
+                    <div>
+                        <a class="btn btn-primary" href="{{ route('admin.settings.tours.index') }}">
+                            <i class="mdi mdi-cog"></i>
+                        </a>
+                        <a class="btn btn-primary" href="{{ route('admin.tours.create') }}">Tambahkan wisata</a>
+                    </div>
+                </div>
 
                 <div class="table-responsive">
                     <table id="datatable" class="table table-editable table-nowrap align-middle table-edits">
